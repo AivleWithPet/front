@@ -5,21 +5,15 @@ import Link from 'next/link'
 
 
 export default function ErrorContainer() {
-
-    const router = useRouter()
-
-    const onClickMove= () => {
-        router.push('/')
-        router.prefetch()
-    }
-    
     return (
         <BackGroundDiv>
             <BodyDiv>
-                <ErrorButton onClick={onClickMove}
+                <ErrorButton
                             whileHover={{ scale: 1.03 }}
                             transition={{ duration: 0.01 }}>
-                            메인페이지로 돌아가기
+                            <a href='/' style={{textDecoration: 'none'}}>
+                                <a>메인페이지로 돌아가기</a>
+                            </a>
                 </ErrorButton>
                 <Word>해당기능은 준비중입니다.<br/>
                     현재 BowWow는 비공개 베타서비스중으로써,<br/>
