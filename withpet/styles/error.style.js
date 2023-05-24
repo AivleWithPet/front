@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import {motion} from "framer-motion";
 
-
-export const BackGroundDiv = styled.body`
+export const BackGroundDiv = styled.div`
+    width: 100vw;
+    height: 100vh;
     background-image: url(/BG.png);
     background-repeat: no-repeat;
     background-position: topcenter;
@@ -10,11 +11,12 @@ export const BackGroundDiv = styled.body`
     background-attachment: fixed;
     display: flex;
     flex-direction: row;
-    padding: 20% 0 0 100px;
+    align-items: center;
 `
 
 export const BodyDiv = styled.div`
     height: 260px;
+    margin-left : 50px;
     display : flex;
     flex-direction: column;
     justify-content: space-between;
