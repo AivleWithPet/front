@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import NavBar from '../src/component/navBar.js';
+import NavBar from '../src/components/navBar/navBar.js';
 
 // 이 export default 함수가 필요하다.
 export default function App({ Component, pageProps }) {
