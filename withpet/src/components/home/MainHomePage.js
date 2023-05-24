@@ -9,7 +9,7 @@ const MainHomePage = () => {
     // 페이지 이동은 yarn에서는 useRouter
 
     const onClickMove = () => {
-        router.push("temp");
+        router.push("guide"); //이거 그럼 guide로 바꾸면 되는지?
     };
 
     return (
