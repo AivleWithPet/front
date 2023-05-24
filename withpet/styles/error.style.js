@@ -10,9 +10,8 @@ export const BackGroundDiv = styled.body`
     background-attachment: fixed;
     display: flex;
     flex-direction: row;
-    padding: 11% 0 0 100px;
+    padding: 20% 0 0 100px;
 `
-
 
 export const BodyDiv = styled.div`
     height: 260px;
@@ -39,15 +38,9 @@ export const ErrorButton = styled(motion.button)`
     border: none;
 `
 
-
-
 export const Word = styled.p`
     padding-left: 10px;
     color: white;
     font-size: 25px;
-
-`
-
-export const HeaderDIV = styled`
 
 `
