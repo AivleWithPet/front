@@ -4,12 +4,12 @@ import { css } from "@emotion/react";
 
 // export const Img
 
-export const LoginAll = styled.div`
+export const RegisterAll = styled.div`
     width: 100vw;
     height: 100vh;
 `
 
-export const LoginDiv = styled.div`
+export const RegisterDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -22,7 +22,7 @@ export const SignIn = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 220px;
+    height: 280px;
 `
 
 export const MainFontStyles = css`
@@ -58,9 +58,25 @@ export const MainFontStyles = css`
 `
 
 export const Ui = styled.div`
-    height: 70px;
+    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+`
+
+export const ERROR = styled.div`
+  color: red;
+  font-size: 9px;
+  padding: 3px;
+  height: 20px;
+  padding-left: 11px;
+`
+
+export const Button = styled.button`
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  font-family: 'SUITE-Regular';
+  height: 20px;
 `
 

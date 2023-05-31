@@ -1,15 +1,21 @@
-import { LoginAll, LoginDiv, SignIn, Ui, MyStyle } from '../../../styles/register.style'
+import {RegisterAll, RegisterDiv, SignIn, Ui, ERROR, Button} from '../../../styles/register.style'
 import { Global } from "@emotion/react";
-import { MainFontStyles } from '../../../styles/register.style'
-import { InfoCircleOutlined, UserOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { Input, Tooltip, Button } from 'antd';
+import {MainFontStyles} from '../../../styles/register.style'
+import { InfoCircleOutlined, UserOutlined,  EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { Input } from 'antd';
 import axios from 'axios';
 import { useState } from 'react';
 
-export default function LoginPage() {
+export default function RegisterPage() {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    const [emailError, setErrorEmail] = useState('');
+    const [usernameError, setErrorUsername] = useState('');
+    const [passwordError, setErrorPassword] = useState('');
+    const [confirmPasswordError, setConfirmErrorPassword] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,20 +30,65 @@ export default function LoginPage() {
             if (response.status === 200) {
                 console.log('회원가입 성공', response.data);
             } else {
-                console.log('회원가입 실패');
+                console.log('회원가입 실패', response.data);
             }
         } catch (e) {
-            console.error('회원가입 실패', e)
+            console.log('회원가입 실패', e)
         };
     }
+    
+    const onChangeEmail = (event) => {
+        setEmail(event.target.value);
+        if(event.target.value !== ""){
+            setErrorEmail("")
+        }
+    };
 
-    const MyStyle = {
-        width: '250px'
-    }
+    const onChangeUsername = (event) => {
+        setUsername(event.target.value);
+        if(event.target.value !== "") {
+            setErrorUsername("")
+        }
+    };
 
-    return (
-        <LoginAll>
-            <LoginDiv>
+    const onChangePassword = (event) => {
+        setPassword(event.target.value);
+        if(event.target.value !== "") {
+            setErrorPassword("")
+        }
+    };
+
+    const onChangeConfirmPassword = (event) => {
+        setConfirmPassword(event.target.value);
+        if(event.target.value !== "") {
+            setConfirmErrorPassword("")
+        }
+    };
+
+    const onClickButon = () => {
+        if (!email) {
+            setErrorEmail("이메일을 입력해주세요")
+        }
+        if (!username) {
+            setErrorUsername("이름을 입력해주세요")
+        }
+        if (!password) {
+            setErrorPassword("비밀번호를 입력해주세요")
+        }
+        if (!confirmPassword) {
+            setConfirmErrorPassword("비밀번호를 입력해주세요")
+        }
+        if (password !== confirmPassword) {
+            setConfirmErrorPassword("비밀번호가 맞지 않습니다")
+        }
+        if (email && password && username && confirmPassword && password == confirmPassword) {
+            alert("회원가입이 완료되었습니다.");
+        }
+    };
+    
+    return(
+        <RegisterAll>
+            <RegisterDiv>
                 <SignIn>
                     <Global styles={MainFontStyles} ></Global>
                     <h2>BowWow</h2>
@@ -47,61 +98,51 @@ export default function LoginPage() {
                     <Ui>
                         <h5>이메일</h5>
                         <Input
-                            type="email"
+                            type="text"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            style={MyStyle}
+                            onChange={onChangeEmail}
                             placeholder="Enter your E-mail"
                             prefix={<UserOutlined className="site-form-item-icon" />}
-                            suffix={
-                                <Tooltip title="Extra information">
-                                    <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
-                                </Tooltip>
-                            }
                         />
+                        <ERROR>{emailError}</ERROR>
                     </Ui>
                     <Ui>
                         <h5>이름</h5>
                         <Input
                             type="text"
                             value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            style={MyStyle}
+                            onChange={onChangeUsername}
                             placeholder="Enter your Name"
                             prefix={<UserOutlined className="site-form-item-icon" />}
-                            suffix={
-                                <Tooltip title="Extra information">
-                                    <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
-                                </Tooltip>
-                            }
                         />
+                        <ERROR>{usernameError}</ERROR>
                     </Ui>
                     <Ui>
                         <h5>비밀번호</h5>
                         <Input.Password
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            style={MyStyle}
+                            onChange={onChangePassword}
                             placeholder="input password"
                             iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                         />
+                        <ERROR>{passwordError}</ERROR>
                     </Ui>
-                    {/* <Ui>
+                    <Ui>
                         <h5>비밀번호 확인</h5>
                         <Input.Password
                             value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            style= {MyStyle}
+                            onChange={onChangeConfirmPassword}
                             placeholder="input password"
                             iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                         />
-                    </Ui> */}
-                    <Ui>
-                        <button type="submit">확인</button>
+                        <ERROR>{confirmPasswordError}</ERROR>
                     </Ui>
+                    <Ui>
+                        <Button onClick = {onClickButon} type="submit">확인</Button>
+                    </Ui>  
                 </form>
-            </LoginDiv>
-        </LoginAll>
+            </RegisterDiv>
+        </RegisterAll>
     )
 }
 
