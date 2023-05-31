@@ -7,29 +7,29 @@ import axios from 'axios';
 import { useState } from 'react';
 
 export default function LoginPage() {
-    // const [email, setEmail] = useState('');
-    // const [username, setUsername] = useState('');
-    // const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     console.log('함수 호출');
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log('함수 호출');
     
-    //     try {
-    //         const response = await axios.post('/api/register', {
-    //             email,
-    //             username,
-    //             password,
-    //         });
-    //         if (response.status === 200) {
-    //             console.log('회원가입 성공', response.data);
-    //         } else {
-    //         console.log('회원가입 실패');
-    //         }
-    //     } catch (e) {
-    //         console.error('회원가입 실패', e)
-    //     };
-    // }
+        try {
+            const response = await axios.post('/api/register', {
+                'email': email,
+                'username' : username,
+                'password' : password,
+            });
+            if (response.status === 200) {
+                console.log('회원가입 성공', response.data);
+            } else {
+            console.log('회원가입 실패');
+            }
+        } catch (e) {
+            console.error('회원가입 실패', e)
+        };
+    }
 
     const MyStyle = {
         width: '250px'
