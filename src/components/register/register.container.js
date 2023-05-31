@@ -1,7 +1,7 @@
-import {LoginAll, LoginDiv, SignIn, Ui, MyStyle} from '../../../styles/login.style'
+import { LoginAll, LoginDiv, SignIn, Ui, MyStyle } from '../../../styles/register.style'
 import { Global } from "@emotion/react";
-import {MainFontStyles} from '../../../styles/login.style'
-import { InfoCircleOutlined, UserOutlined,  EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { MainFontStyles } from '../../../styles/register.style'
+import { InfoCircleOutlined, UserOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Input, Tooltip, Button } from 'antd';
 import axios from 'axios';
 import { useState } from 'react';
@@ -14,17 +14,17 @@ export default function LoginPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('함수 호출');
-    
+
         try {
             const response = await axios.post('/api/register', {
                 'email': email,
-                'username' : username,
-                'password' : password,
+                'username': username,
+                'password': password,
             });
             if (response.status === 200) {
                 console.log('회원가입 성공', response.data);
             } else {
-            console.log('회원가입 실패');
+                console.log('회원가입 실패');
             }
         } catch (e) {
             console.error('회원가입 실패', e)
@@ -34,8 +34,8 @@ export default function LoginPage() {
     const MyStyle = {
         width: '250px'
     }
-    
-    return(
+
+    return (
         <LoginAll>
             <LoginDiv>
                 <SignIn>
@@ -54,10 +54,10 @@ export default function LoginPage() {
                             placeholder="Enter your E-mail"
                             prefix={<UserOutlined className="site-form-item-icon" />}
                             suffix={
-                            <Tooltip title="Extra information">
-                                <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
-                            </Tooltip>
-                        }
+                                <Tooltip title="Extra information">
+                                    <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+                                </Tooltip>
+                            }
                         />
                     </Ui>
                     <Ui>
@@ -70,9 +70,9 @@ export default function LoginPage() {
                             placeholder="Enter your Name"
                             prefix={<UserOutlined className="site-form-item-icon" />}
                             suffix={
-                            <Tooltip title="Extra information">
-                                <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
-                            </Tooltip>
+                                <Tooltip title="Extra information">
+                                    <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+                                </Tooltip>
                             }
                         />
                     </Ui>
@@ -98,7 +98,7 @@ export default function LoginPage() {
                     </Ui> */}
                     <Ui>
                         <button type="submit">확인</button>
-                    </Ui>  
+                    </Ui>
                 </form>
             </LoginDiv>
         </LoginAll>
