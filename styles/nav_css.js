@@ -10,7 +10,7 @@ export const Nav = styled.div `
   width: 100%;
 
   text-decoration: none;
-  padding-left: 20px;
+  padding-left: 0px;
   padding-right: 20px;
   color: black;
 
@@ -19,8 +19,8 @@ export const Nav = styled.div `
 
 export const NavA = styled.div `
   text-decoration: none;
+  padding-top: 20px;
   padding-left: 20px; 
   padding-right: 20px;
   color: black;
 `
-
