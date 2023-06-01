@@ -7,12 +7,12 @@ import axios from 'axios';
 import { useState } from 'react';
 
 export default function RegisterPage() {
-    const [email, setEmail] = useState('');
+    const [id, setid] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [emailError, setErrorEmail] = useState('');
+    const [idError, setErrorid] = useState('');
     const [usernameError, setErrorUsername] = useState('');
     const [passwordError, setErrorPassword] = useState('');
     const [confirmPasswordError, setConfirmErrorPassword] = useState('');
@@ -24,7 +24,7 @@ export default function RegisterPage() {
         if(validInputs()){
             try {
                 const response = await axios.post('/api/register', {
-                    'email': email,
+                    'id': id,
                     'username': username,
                     'password': password,
                 });
@@ -43,10 +43,10 @@ export default function RegisterPage() {
         
     };
     
-    const onChangeEmail = (event) => {
-        setEmail(event.target.value);
+    const onChangeid = (event) => {
+        setid(event.target.value);
         if(event.target.value !== ""){
-            setErrorEmail("")
+            setErrorid("")
         }
     };
 
@@ -73,8 +73,8 @@ export default function RegisterPage() {
 
     const validInputs = () => {
         let isValid = true;
-        if (!email) {
-            setErrorEmail("이메일을 입력해주세요")
+        if (!id) {
+            setErrorid("아이디를 입력해주세요")
             isValid=false;
         }
         if (!username) {
@@ -106,15 +106,15 @@ export default function RegisterPage() {
                 </SignIn>
                 <form onSubmit={handleSubmit}>
                     <Ui>
-                        <h5>이메일</h5>
+                        <h5>아이디</h5>
                         <Input
                             type="text"
-                            value={email}
-                            onChange={onChangeEmail}
+                            value={id}
+                            onChange={onChangeid}
                             placeholder="Enter your E-mail"
                             prefix={<UserOutlined className="site-form-item-icon" />}
                         />
-                        <ERROR>{emailError}</ERROR>
+                        <ERROR>{idError}</ERROR>
                     </Ui>
                     <Ui>
                         <h5>이름</h5>
