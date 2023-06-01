@@ -8,7 +8,7 @@ export default function NavBar() {
       </div>
       <NavA>
         <a href='/login'>Sign In </a>
-        <a href='/error'>Sign Up</a>
+        <a href='/register'>Sign Up</a>
       </NavA>
     </Nav>
   )
