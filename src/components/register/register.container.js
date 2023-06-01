@@ -1,7 +1,7 @@
 import {RegisterAll, RegisterDiv, SignIn, Ui, ERROR, Button} from '../../../styles/register.style'
 import { Global } from "@emotion/react";
 import {MainFontStyles} from '../../../styles/register.style'
-import { InfoCircleOutlined, UserOutlined,  EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { UserOutlined,  EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Input } from 'antd';
 import axios from 'axios';
 import { useState } from 'react';
@@ -21,21 +21,27 @@ export default function RegisterPage() {
         e.preventDefault();
         console.log('함수 호출');
 
-        try {
-            const response = await axios.post('/api/register', {
-                'email': email,
-                'username': username,
-                'password': password,
-            });
-            if (response.status === 200) {
-                console.log('회원가입 성공', response.data);
-            } else {
-                console.log('회원가입 실패', response.data);
-            }
-        } catch (e) {
-            console.log('회원가입 실패', e)
-        };
-    }
+        if(validInputs()){
+            try {
+                const response = await axios.post('/api/register', {
+                    'email': email,
+                    'username': username,
+                    'password': password,
+                });
+                if (response.status === 200) {
+                    console.log('회원가입 성공', response.data);
+                    alert("회원가입이 완료되었습니다.");
+
+                } else {
+                    console.log('회원가입 실패', response.data);
+                }
+            } catch (e) {
+                console.log('회원가입 실패', e)
+            };
+        }
+
+        
+    };
     
     const onChangeEmail = (event) => {
         setEmail(event.target.value);
@@ -65,25 +71,29 @@ export default function RegisterPage() {
         }
     };
 
-    const onClickButon = () => {
+    const validInputs = () => {
+        let isValid = true;
         if (!email) {
             setErrorEmail("이메일을 입력해주세요")
+            isValid=false;
         }
         if (!username) {
             setErrorUsername("이름을 입력해주세요")
+            isValid=false;
         }
         if (!password) {
             setErrorPassword("비밀번호를 입력해주세요")
+            isValid=false;
         }
         if (!confirmPassword) {
             setConfirmErrorPassword("비밀번호를 입력해주세요")
+            isValid=false;
         }
         if (password !== confirmPassword) {
             setConfirmErrorPassword("비밀번호가 맞지 않습니다")
+            isValid=false;
         }
-        if (email && password && username && confirmPassword && password == confirmPassword) {
-            alert("회원가입이 완료되었습니다.");
-        }
+        return isValid
     };
     
     return(
@@ -138,7 +148,7 @@ export default function RegisterPage() {
                         <ERROR>{confirmPasswordError}</ERROR>
                     </Ui>
                     <Ui>
-                        <Button onClick = {onClickButon} type="submit">확인</Button>
+                        <Button type="submit">확인</Button>
                     </Ui>  
                 </form>
             </RegisterDiv>
