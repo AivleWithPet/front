@@ -17,7 +17,7 @@ export default function ShotGuidePage() {
     };
 
     const nextClick = () => {
-        if (num == 3) return;
+        if (num == 2) return;
         else {
             num++;
             setImageSrc("/img/dog" + num + ".jpg");
