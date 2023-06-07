@@ -8,6 +8,7 @@ export const MainHomePageContainer = styled.div`
   justify-content: space-between;
   align-items:center;
   text-align: center;
+  height: 60.2vh;
 `
 
 export const MainFontStyles = css`
