@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-export default function NavBar() {
+export default function NavBar2() {
   const router = useRouter();
 
   const moveSignIn = () => {
@@ -49,12 +49,6 @@ export default function NavBar() {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
-          </Nav>
-          <Nav>
-            <Nav.Link onClick={moveSignIn}>Sign in</Nav.Link>
-            <Nav.Link eventKey={2} onClick={moveSignUp}>
-              Sign up
-            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
