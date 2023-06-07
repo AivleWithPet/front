@@ -1,7 +1,5 @@
 import { useRouter } from 'next/router.js';
 // import {Nav, NavA} from '../../../styles/nav_css.js';
-
-
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';

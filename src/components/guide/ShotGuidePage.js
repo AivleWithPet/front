@@ -6,13 +6,13 @@ import Button from 'react-bootstrap/Button';
 const num = 0;
 export default function ShotGuidePage() {
 
-    const [imageSrc, setImageSrc] = useState("/img/dog0.jpg");
+    const [imageSrc, setImageSrc] = useState("/img/image0.png");
 
     const prevClick = () => {
         if (num == 0) return;
         else {
             num--;
-            setImageSrc("/img/dog" + num + ".jpg");
+            setImageSrc("/img/image" + num + ".png");
         }
     };
 
@@ -20,7 +20,7 @@ export default function ShotGuidePage() {
         if (num == 2) return;
         else {
             num++;
-            setImageSrc("/img/dog" + num + ".jpg");
+            setImageSrc("/img/image" + num + ".png");
         }
     };
 
