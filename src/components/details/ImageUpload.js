@@ -1,72 +1,85 @@
-import React, { useState, useRef } from "react";
-import { Global } from "@emotion/react";
-import axios from "axios";
+import { PlusOutlined } from '@ant-design/icons';
+import { Modal, Upload } from 'antd';
+import { useState } from 'react';
 import { ImgUploadContainer, MainFontStyles } from "../../../styles/img_upload_emtion";
+import { Global } from "@emotion/react";
 import Button from 'react-bootstrap/Button';
-//////////////////////////////////////////////////// 슬라이드용
-import { Navigation, Pagination, EffectFade } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
-import 'swiper/components/navigation/navigation.min.css'
-import 'swiper/components/pagination/pagination.min.css'
+import axios from "axios";
 
+
+
+const getBase64 = (file) =>
+    new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+    });
 
 
 export default function ImageUpload() {
-    // 상태설정
-    const [file, setFile] = useState()
-    const [showImages, setShowImages] = useState([])
-    let imgLists = [...showImages]
+
+    const [previewOpen, setPreviewOpen] = useState(false);
+    const [previewImage, setPreviewImage] = useState('');
+    const [previewTitle, setPreviewTitle] = useState('');
+    const [fileList, setFileList] = useState([]);
 
 
-    // 이미지를 formdata 객체에 추가하는 함수
-    const onUploadImg = (e) => {
-        e.preventDefault();
-
-        // formdata 객체 만들기
-        const formData = new FormData();
-
-
-        if (e.target.files) {
-            const uploadFiles = e.target.files;
-            for (const i = 0; i < uploadFiles.length; i++) {
-                formData.append('files', uploadFiles[i]) //서버전달용
-                const currentImgUrl = URL.createObjectURL(uploadFiles[i]) //미리보기용
-                imgLists.push(currentImgUrl)
-            }
-            setShowImages(imgLists) // 미리보기용
-            setFile(uploadFiles); //서버전달용
-            console.log("*********append 확인용*********")
-            console.log(uploadFiles);
-            console.log("*********push 확인용*********")
-            console.log(imgLists);
+    const handleCancel = () => setPreviewOpen(false);
+    const handlePreview = async (file) => {
+        if (!file.url && !file.preview) {
+            file.preview = await getBase64(file.originFileObj);
         }
-
+        setPreviewImage(file.url || file.preview);
+        setPreviewOpen(true);
+        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
     };
 
-
-
-    // 이미지를 formdata 객체에서 삭제하는 함수
-    const onDeleteImg = (target_idx) => {
-        const newImgList = file.filter(file => file.idx !== target_idx)
-        setFile(newImgList)
-        console.log("*********delete 확인용*********")
-        console.log(newImgList)
-    };
+    const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+    const uploadButton = (
+        <div>
+            <PlusOutlined />
+            <div
+                style={{
+                    marginTop: 8,
+                }}
+            >
+                Upload
+            </div>
+        </div>
+    );
 
 
     // 이미지를 서버로 전송하는 함수
-    const onClickUpload = async (event) => {
+
+    const handleApi = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-        formData.append('file', file);
 
+
+        if (fileList) {
+            for (const i = 0; i < fileList.length; i++) {
+                formData.append('title', fileList[i]['originFileObj']['name'])  //서버전달용
+                formData.append('content', fileList[i]['originFileObj'])
+            }
+        };
+
+        console.log("******************************")
+        // FormData의 key 확인
+        for (let key of formData.keys()) {
+            console.log("formDara key");
+            console.log(key);
+        }
+
+        // FormData의 value 확인
+        for (let value of formData.values()) {
+            console.log("formDara values");
+            console.log(value);
+        }
+        //data: formData
         try {
-            const response = await axios.post('http://localhost:8000/api/details', {
+            const response = await axios.post('http://127.0.0.1:8000', formData, {
                 headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
-                data: formData
             });
             if (response.status === 200) {
                 console.log('이미지 전송 성공', response.data);
@@ -79,6 +92,7 @@ export default function ImageUpload() {
 
     };
 
+    //https://www.mocky.io/v2/5cc8019d300000980a055e76
 
     return (
         <>
@@ -86,46 +100,29 @@ export default function ImageUpload() {
                 <Global styles={MainFontStyles} ></Global>
                 <h2>사진 업로드</h2>
                 <h4>사진을 업로드 하세요.</h4>
-                {/*미리보기 영역*/}
-                <Swiper
-                    effect={"fade"}
-                    autoplay={{
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    }}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    modules={[Navigation, Pagination, EffectFade]}
-                    className="mySwiper"
-                    loop={true}
+                <Upload
+                    action="http://localhost:3000/"
+                    listType="picture-card"
+                    fileList={fileList}
+                    onPreview={handlePreview}
+                    onChange={handleChange}
                 >
-                    {showImages.map((image, id) => {
-                        return (
-                            <SwiperSlide key={id}>
-                                <img src={image} />
-                            </SwiperSlide>
-                        );
-                    })}
-                </Swiper>
+                    {fileList.length >= 5 ? null : uploadButton}
+                </Upload>
 
-                {/*미리보기 응용 전*/}
-                {/* <div className='img-container'>
-                        {showImages.map((image, id) => (
-                            <div className='imgConta' key={id}>
-                                <img src={image} alt={`${image}-${id}`} />
-
-
-            {/*이미지 첨부 버튼*/}
-                <form method="post" encType="multipart/form-data">
-                    <label className='img-label' htmlFor="img-upload">add yout photo</label>
-                    <input type="file" id="img-upload" accept="image/*" onChange={onUploadImg} multiple />
-                </form>
+                <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
+                    <img
+                        style={{
+                            width: '100%',
+                        }}
+                        src={previewImage}
+                    />
+                </Modal>
 
                 {/*서버 제출 버튼*/}
-                <Button variant="outline-primary" id='submit-btn' type='submit' onClick={onClickUpload}>Submit</Button>
+                <Button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi}>Submit</Button>
 
             </ImgUploadContainer >
         </>
-    )
-}
+    );
+};
