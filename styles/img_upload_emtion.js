@@ -31,44 +31,13 @@ export const MainFontStyles = css`
   Button{
     width: 100px;
     height: 45px;
-    //position: fixed;
-    bottom: 100px;
+    margin-left: -8px;
   }
-
-  #submit-btn {
-    left: calc(100%/2 - 110px);
-    margin-bottom: 20px;
-  }
-
 
   .img-container{
     width:100%;
     height: calc(100%/2 - 200px);
     margin-bottom: 30px;
-  }
-
-  .img-label{
-    width: 140px;
-    height: 45px;
-    font-family: 'SUITE-Regular';
-    line-height: 45px;
-    margin: 5px 0 20px 0;
-    font-weight: bold;
-    font-size: 16px;
-    background-color: #0D6EFD;
-    color: white;
-    //display: inline-block;
-    cursor: pointer;
-    border: none;
-    border-radius: 20px;
-    text-align: center;
-
-  }
-
-
-
-  input[type='file']{
-    display: none;
   }
 
 
