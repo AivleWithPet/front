@@ -61,19 +61,30 @@ export default function ImageUpload() {
                 <h4>사진을 업로드 하세요.</h4>
 
                 {/* <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} /> */}
-                <label htmlFor="file-upload">
-                    <div style={{ width: '700px', height: '500px', backgroundColor: 'gray', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                        <CameraOutlined style={{ fontSize: '56px' }} />
-                        <p style={{ marginTop: '10px' }}>Click to upload an image</p>
-                    </div>
-                </label>
 
-                <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
-
-
-                {fileList && (
+                {fileList.length > 0 ? (
                     <Preview fileList={fileList} />
+                ) : (
+                    <label htmlFor="file-upload">
+                        <div style={{ width: '700px', height: '500px', backgroundColor: 'gray', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                            <CameraOutlined style={{ fontSize: '56px' }} />
+                            <p style={{ marginTop: '10px' }}>이미지를 업로드하려면 클릭하세요.</p>
+                            <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
+                        </div>
+                    </label>
                 )}
+
+                {/* // <label htmlFor="file-upload">
+                //     <div style={{ width: '700px', height: '500px', backgroundColor: 'gray', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                //         <CameraOutlined style={{ fontSize: '56px' }} />
+                //         <p style={{ marginTop: '10px' }}>Click to upload an image</p>
+                //     </div>
+                // </label>
+
+                // <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} /> */}
+                {/* {fileList && (
+                    <Preview fileList={fileList} />
+                )} */}
 
                 {/*서버 제출 버튼*/}
                 < Button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi}>Submit</Button>
