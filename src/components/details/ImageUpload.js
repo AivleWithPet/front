@@ -78,8 +78,9 @@ export default function ImageUpload() {
         }
         //data: formData
         try {
-            const response = await axios.post('http://127.0.0.1:8000', formData, {
+            const response = await axios.post('http://localhost:8000/ai', formData, {
                 headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
+                withCredentials: true,
             });
             if (response.status === 200) {
                 console.log('이미지 전송 성공', response.data);
