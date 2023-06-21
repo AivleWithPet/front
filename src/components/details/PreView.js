@@ -7,7 +7,8 @@ const Preview = ({ fileList }) => {
             {fileList.map((file, index) => (
                 <img
                     key={index}
-                    width="100%"
+                    width="700px"
+                    height="500px"
                     src={URL.createObjectURL(file)}
                     alt={`Preview ${index}`}
                 />

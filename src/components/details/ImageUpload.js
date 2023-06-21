@@ -32,7 +32,7 @@ export default function ImageUpload() {
     const handleApi = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-        //formData.append('title', fileList['originFileObj']['name'])  //서버전달용
+        formData.append('file', fileList)  //서버전달용
         // 지금 임시로 확인
         try {
             const response = await axios.post('http://127.0.0.1:8000', formData, {
@@ -60,7 +60,16 @@ export default function ImageUpload() {
                 <h2>사진 업로드</h2>
                 <h4>사진을 업로드 하세요.</h4>
 
-                <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} />
+                {/* <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} /> */}
+                <label htmlFor="file-upload">
+                    <div style={{ width: '700px', height: '500px', backgroundColor: 'gray', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <CameraOutlined style={{ fontSize: '56px' }} />
+                        <p style={{ marginTop: '10px' }}>Click to upload an image</p>
+                    </div>
+                </label>
+
+                <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
+
 
                 {fileList && (
                     <Preview fileList={fileList} />
