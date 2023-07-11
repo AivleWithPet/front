@@ -66,7 +66,7 @@ export default function ImageUpload() {
                     </label>
                 )}
 
-                <Button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi}>Submit</Button>
+                <Button variant="outline-primary" id='submit-btn' onClick={handleApi}>Submit</Button>
 
                 {/* 이미지 미첨부시 전송이 불가능하다는 모달 창 추가 */}
                 <Modal
