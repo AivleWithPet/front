@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { CameraOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 const Preview = ({ fileList }) => {
     return (
@@ -10,7 +10,9 @@ const Preview = ({ fileList }) => {
                     style={{ maxWidth: '100%', maxHeight: '100%', width: 'calc(100vw - 55vw)', height: 'calc(100vh - 40vh)' }}
                     src={URL.createObjectURL(file)}
                     alt={`Preview ${index}`}
-                />
+                ></img>
+
+
             ))}
         </>
     );
