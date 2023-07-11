@@ -35,10 +35,9 @@ export default function ShotGuidePage() {
                 <div class="text-container">
                     <h2>촬영 가이드</h2>
                     <h4>정확한 체크를 위해 꼭 촬영 가이드를 먼저 읽어보세요.</h4>
-                    <h4>(예시)</h4>
                 </div>
-                <div class='img-container'>
-                    <img src={imageSrc} id='imgs' />
+                <div class='img-container' >
+                    <img src={imageSrc} id='imgs' style={{ width: 'calc(100vw - 55vw)', height: 'calc(100vh - 40vh)' }} />
                 </div>
                 <div class='bnt-container'>
                     <Button variant="outline-primary" id='btn-1' onClick={prevClick}>이전</Button>

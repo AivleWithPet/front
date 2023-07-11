@@ -35,20 +35,24 @@ export const MainFontStyles = css`
 
   #btn-1 {
     left: calc(100%/2 - 110px);
-    margin-bottom: 20px;
+    margin-top: 10px;
     margin-right: 5px;
+    width: calc(100vw - 95vw);
+    height: calc(100vh - 95vh);
   }
 
   #btn-2 {
     right: calc(100%/2 - 110px);
-    margin-bottom: 20px;
+    margin-top: 10px;
     margin-left: 5px;
+    width: calc(100vw - 95vw);
+    height: calc(100vh - 95vh);
   }
 
   .img-container{
     width:100%;
-    height: calc(100%/2 - 200px);
-    margin-bottom: 30px;
+    /* height: calc(100%/2 - 200px); */
+    margin-bottom: 8px;
   }
 
 

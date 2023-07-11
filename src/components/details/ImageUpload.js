@@ -58,7 +58,7 @@ export default function ImageUpload() {
                 ) : (
                     <label htmlFor="file-upload">
                         {/* 이 부분 div 이모션으로 만들어서 추가 */}
-                        <div style={{ width: 'calc(100vw - 55vw)', height: 'calc(100vh - 40vh)', backgroundColor: 'gray', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <div style={{ width: 'calc(100vw - 55vw)', height: 'calc(100vh - 40vh)', backgroundColor: '#CCCCCC', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                             <CameraOutlined style={{ fontSize: '56px' }} />
                             <p style={{ marginTop: '10px' }}>이미지를 업로드하려면 클릭하세요.</p>
                             <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
