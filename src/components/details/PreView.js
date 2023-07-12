@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { CameraOutlined, CloseCircleOutlined } from '@ant-design/icons';
 
 const Preview = ({ fileList }) => {
     return (
@@ -7,41 +7,15 @@ const Preview = ({ fileList }) => {
             {fileList.map((file, index) => (
                 <img
                     key={index}
-                    width="700px"
-                    height="500px"
+                    style={{ maxWidth: '100%', maxHeight: '100%', width: 'calc(100vw - 55vw)', height: 'calc(100vh - 40vh)' }}
                     src={URL.createObjectURL(file)}
                     alt={`Preview ${index}`}
-                />
+                ></img>
+
+
             ))}
         </>
     );
 };
 
 export default Preview;
-
-
-// const Preview = () => {
-//     const [imageSrc, setImageSrc] = useState(null);
-
-//     const onUpload = (e) => {
-//         const file = e.target.files[0];
-//         const reader = new FileReader();
-//         reader.readAsDataURL(file);
-
-//         return new Promise((resolve) => {
-//             reader.onload = () => {
-//                 setImageSrc(reader.result || null);
-//                 resolve();
-//             };
-//         });
-//     };
-
-//     return (
-//         <>
-//             <input accept="image/*" multiple type="file" onChange={e => onUpload(e)} />
-//             <img width={'100%'} src={imageSrc} />
-//         </>
-//     );
-// };
-
-// export default Preview;
