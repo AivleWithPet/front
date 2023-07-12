@@ -66,13 +66,22 @@ export default function ImageUpload() {
                 <h4>AI 진단이 필요한 사진을 업로드 하세요.</h4>
 
                 {fileList.length > 0 ? (
-                    <div>
+                    <div style={{ position: 'relative' }}>
                         <Preview fileList={fileList} />
-                        <CloseCircleOutlined onClick={handleFileDelete} />
+                        <CloseCircleOutlined
+                            style={{
+                                position: 'absolute',
+                                top: '10px',
+                                right: '10px',
+                                fontSize: '24px',
+                                color: 'white',
+                                cursor: 'pointer',
+                            }}
+                            onClick={handleFileDelete}
+                        />
                     </div>
                 ) : (
                     <label htmlFor="file-upload">
-                        {/* 이 부분 div 이모션으로 만들어서 추가 */}
                         <div style={{ width: 'calc(100vw - 55vw)', height: 'calc(100vh - 40vh)', backgroundColor: '#CCCCCC', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                             <CameraOutlined style={{ fontSize: '56px' }} />
                             <p style={{ marginTop: '10px' }}>사진을 업로드하려면 클릭하세요.</p>
