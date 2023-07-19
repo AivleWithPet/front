@@ -2,13 +2,13 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
 export const MainHomePageContainer = styled.div`
-  margin-top:250px;
+  margin-top: calc(100vh - 80vh);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items:center;
   text-align: center;
-  height: 60.2vh;
+  height: 60vh;
 `
 
 export const MainFontStyles = css`

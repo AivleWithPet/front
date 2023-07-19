@@ -1,129 +1,109 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { Modal, Upload } from 'antd';
-import { useState } from 'react';
-import { ImgUploadContainer, MainFontStyles } from "../../../styles/img_upload_emtion";
-import { Global } from "@emotion/react";
-import Button from 'react-bootstrap/Button';
-import axios from "axios";
-
-
-
-const getBase64 = (file) =>
-    new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = (error) => reject(error);
-    });
-
+import React, { useState } from 'react';
+import { ImgUploadContainer, MainFontStyles } from '../../../styles/img_upload_emtion';
+import { Global } from '@emotion/react';
+import { Button, Modal } from 'antd';
+import { CameraOutlined, CloseCircleOutlined } from '@ant-design/icons';
+import axios from 'axios';
+import Preview from './PreView';
 
 export default function ImageUpload() {
-
-    const [previewOpen, setPreviewOpen] = useState(false);
-    const [previewImage, setPreviewImage] = useState('');
-    const [previewTitle, setPreviewTitle] = useState('');
     const [fileList, setFileList] = useState([]);
+    const [modalVisible, setModalVisible] = useState(false);
+    const formData = new FormData(); // 전역변수로!
 
 
-    const handleCancel = () => setPreviewOpen(false);
-    const handlePreview = async (file) => {
-        if (!file.url && !file.preview) {
-            file.preview = await getBase64(file.originFileObj);
-        }
-        setPreviewImage(file.url || file.preview);
-        setPreviewOpen(true);
-        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+    // 이미지 업로드 함수
+    const handleFileChange = (event) => {
+        const files = event.target.files;
+        const newFileList = Array.from(files);
+        setFileList(newFileList);
     };
 
-    const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
-    const uploadButton = (
-        <div>
-            <PlusOutlined />
-            <div
-                style={{
-                    marginTop: 8,
-                }}
-            >
-                Upload
-            </div>
-        </div>
-    );
-
-
-    // 이미지를 서버로 전송하는 함수
-
+    // 이미지 서버 전송 함수
     const handleApi = async (event) => {
         event.preventDefault();
-        const formData = new FormData();
-
-
-        if (fileList) {
-            for (const i = 0; i < fileList.length; i++) {
-                formData.append('title', fileList[i]['originFileObj']['name'])  //서버전달용
-                formData.append('content', fileList[i]['originFileObj'])
-            }
-        };
-
-        console.log("******************************")
-        // FormData의 key 확인
-        for (let key of formData.keys()) {
-            console.log("formDara key");
-            console.log(key);
+        if (fileList.length === 0) {
+            setModalVisible(true); // 이미지를 첨부하라는 모달창 표시
+            return;
         }
+        // const formData = new FormData();
+        formData.append('file', fileList[0]);
 
-        // FormData의 value 확인
-        for (let value of formData.values()) {
-            console.log("formDara values");
-            console.log(value);
-        }
-        //data: formData
         try {
             const response = await axios.post('http://localhost:8000/ai', formData, {
-                headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
-                withCredentials: true,
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    withCredentials: true, //CORS
+                },
+
             });
             if (response.status === 200) {
                 console.log('이미지 전송 성공', response.data);
             } else {
-                console.log('이미지 전송 실패');
+                console.log('이미지 전송 실패', response.status);
             }
         } catch (event) {
             console.error('이미지 전송 실패', event)
-        };
+        }
+    }
 
-    };
+    // 모달 창 ok 누르면 꺼지는 함수
+    const handleModalOk = () => {
+        setModalVisible(false);
+    }
 
-    //https://www.mocky.io/v2/5cc8019d300000980a055e76
+    // 이미지 삭제 함수
+    const handleFileDelete = () => {
+        setFileList([]); //fileList를 빈 배열로 만들어서 Preview false시킴
+        formData.delete('file'); // formData에서도 제거
+    }
 
     return (
         <>
             <ImgUploadContainer>
-                <Global styles={MainFontStyles} ></Global>
+                <Global styles={MainFontStyles} />
                 <h2>사진 업로드</h2>
-                <h4>사진을 업로드 하세요.</h4>
-                <Upload
-                    action="http://localhost:3000/"
-                    listType="picture-card"
-                    fileList={fileList}
-                    onPreview={handlePreview}
-                    onChange={handleChange}
+                <h4>AI 진단이 필요한 사진을 업로드 하세요.</h4>
+
+                {fileList.length > 0 ? (
+                    <div style={{ position: 'relative' }}>
+                        <Preview fileList={fileList} />
+                        <CloseCircleOutlined
+                            style={{
+                                position: 'absolute',
+                                top: '10px',
+                                right: '10px',
+                                fontSize: '24px',
+                                color: 'white',
+                                cursor: 'pointer',
+                            }}
+                            onClick={handleFileDelete}
+                        />
+                    </div>
+                ) : (
+                    <label htmlFor="file-upload">
+                        <div style={{ width: 'calc(100vw - 55vw)', height: 'calc(100vh - 40vh)', backgroundColor: '#CCCCCC', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                            <CameraOutlined style={{ fontSize: '56px' }} />
+                            <p style={{ marginTop: '10px' }}>사진을 업로드하려면 클릭하세요.</p>
+                            <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
+                        </div>
+                    </label>
+                )}
+
+                <Button variant="outline-primary" id='submit-btn' onClick={handleApi}>Submit</Button>
+
+                {/* 이미지 미첨부시 전송이 불가능하다는 모달 창 추가 */}
+                <Modal
+                    title="사진을 첨부해주세요!"
+                    open={modalVisible}
+                    onOk={handleModalOk}
+                    cancelButtonProps={{ style: { display: 'none' } }}
                 >
-                    {fileList.length >= 5 ? null : uploadButton}
-                </Upload>
-
-                <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
-                    <img
-                        style={{
-                            width: '100%',
-                        }}
-                        src={previewImage}
-                    />
+                    <p>사진을 첨부하지 않으면 AI 진단이 불가능합니다.</p>
                 </Modal>
-
-                {/*서버 제출 버튼*/}
-                <Button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi}>Submit</Button>
-
-            </ImgUploadContainer >
+            </ImgUploadContainer>
         </>
     );
-};
+}
+
+

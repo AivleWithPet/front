@@ -28,16 +28,23 @@ export const MainFontStyles = css`
     margin-bottom: 20px;
   }
 
-  Button{
+  /* Button{
     width: 100px;
     height: 45px;
     margin-left: -8px;
-  }
+  } */
 
   .img-container{
     width:100%;
     height: calc(100%/2 - 200px);
     margin-bottom: 30px;
+  }
+
+  #submit-btn{
+    margin-top: 10px;
+    margin-left: 5px;
+    width: calc(100vw - 95vw);
+    height: calc(100vh - 95vh);
   }
 
 
