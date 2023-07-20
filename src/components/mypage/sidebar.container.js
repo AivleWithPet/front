@@ -19,7 +19,7 @@ export default function SideBar({ handleMenuItemClick }) {
     // 근데 이 부분이 length === 0 이면 반려동물 등록으로 이동 (모달 구현?)
 
     const items = [
-    getItem('누구', '1'),
+    getItem('누구', '1'),   
     getItem('집', '2'),
     getItem('고양이', '3'),
   ];
