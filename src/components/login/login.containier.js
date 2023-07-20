@@ -26,12 +26,18 @@ export default function LoginPage() {
 
         if(validInputs()){
             try {
-                const response = await axios.post('/api/login', {
+                const response = await axios.post('/auth/login', {
                     'email': email,
                     'password': password,
-                });
+                }, { withCredentials: true });
                 if (response.status === 200) {
                     console.log('로그인 성공', response.data);
+                    const accessToken = response.data.accessToken;
+                    const refreshToken = response.data.refreshToken;
+                    const userName = response.data.name;
+                    localStorage.setItem('accessToken', accessToken);
+                    localStorage.setItem('refreshToken', refreshToken);
+                    localStorage.setItem('name',userName);
                     // flag 처럼 state를 만들어서, 로그인 성공하면 flag = 1을 _app.js로 넘겨주면 _app.js에서 1일 때, 로그인o 페이지, 0이면 로그인x 페이지
                     // 로그인o = Sign in, Sign up 지우고, 로그아웃 + 프로필? 기타 등등 나타내기 (삼항연산자)
                     loginSuccess();
