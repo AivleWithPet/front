@@ -33,7 +33,7 @@ export default function SideBar({handleMenuItemClick}) {
 
         <Menu
             mode="inline"
-            defaultSelectedKeys={1}
+            defaultSelectedKeys={[1]}
             selectedKeys={[selectedItem]}
             onClick={({ key }) => handleMenuClick(key)}
         >

@@ -1,9 +1,13 @@
+import { useRouter } from 'next/router';
+
 import { Popover, Button } from 'antd';
 import { QuestionCircleFilled } from '@ant-design/icons';
 
 
 
-export default function RegisterFB({page}) {
+export default function RegisterFB() {
+    const router = useRouter();
+    const { page } = router.query;
 
     const text = (
         <div>
