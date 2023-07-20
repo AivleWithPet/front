@@ -7,12 +7,12 @@ import axios from 'axios';
 import { useState } from 'react';
 
 export default function RegisterPage() {
-    const [id, setid] = useState('');
+    const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [idError, setErrorid] = useState('');
+    const [emailError, setErrorEmail] = useState('');
     const [usernameError, setErrorUsername] = useState('');
     const [passwordError, setErrorPassword] = useState('');
     const [confirmPasswordError, setConfirmErrorPassword] = useState('');
@@ -23,11 +23,11 @@ export default function RegisterPage() {
 
         if(validInputs()){
             try {
-                const response = await axios.post('/api/register', {
-                    'id': id,
-                    'username': username,
-                    'password': password,
-                });
+                const response = await axios.post('/auth/signup', {
+                    "email": email,
+                    "name": username,
+                    "password": password,
+                }, { withCredentials: true });
                 if (response.status === 200) {
                     console.log('회원가입 성공', response.data);
                     alert("회원가입이 완료되었습니다.");
@@ -43,10 +43,10 @@ export default function RegisterPage() {
         
     };
     
-    const onChangeid = (event) => {
-        setid(event.target.value);
+    const onChangeEmail = (event) => {
+        setEmail(event.target.value);
         if(event.target.value !== ""){
-            setErrorid("")
+            setErrorEmail("")
         }
     };
 
@@ -73,8 +73,8 @@ export default function RegisterPage() {
 
     const validInputs = () => {
         let isValid = true;
-        if (!id) {
-            setErrorid("아이디를 입력해주세요")
+        if (!email) {
+            setErrorEmail("이메일을 입력해주세요")
             isValid=false;
         }
         if (!username) {
@@ -106,15 +106,15 @@ export default function RegisterPage() {
                 </SignIn>
                 <form onSubmit={handleSubmit}>
                     <Ui>
-                        <h5>아이디</h5>
+                        <h5>이메일</h5>
                         <Input
                             type="text"
-                            value={id}
-                            onChange={onChangeid}
+                            value={email}
+                            onChange={onChangeEmail}
                             placeholder="Enter your E-mail"
                             prefix={<UserOutlined className="site-form-item-icon" />}
                         />
-                        <ERROR>{idError}</ERROR>
+                        <ERROR>{emailError}</ERROR>
                     </Ui>
                     <Ui>
                         <h5>이름</h5>
