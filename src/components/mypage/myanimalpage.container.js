@@ -16,7 +16,6 @@ export default function MyAnimalPage(){
     };
 
     return (
-
         <Layout style={{ height: 'calc(100vh - 80px)', display: 'flex'}}>
 
              <Sider width={300} style={{ color: "white", boxShadow: '2px 2px 2px rgba(0, 0, 0, 0.1)' }}>
@@ -25,9 +24,13 @@ export default function MyAnimalPage(){
      
              <Layout style={{ padding: '0 24px 24px', backgroundColor: "gray"}}>
              <Content>
+           
                 {/* 여기에 리스트 컴포넌트가 들어가고  selectedItem를 포함한 data를 파라미터로 전달해줌*/}
              </Content>
+             <RegisterFB page={'mypage'} />
              </Layout>
         </Layout>
+     
+
     )
 }
