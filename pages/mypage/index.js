@@ -1,10 +1,10 @@
-import MyPage from '../../src/components/mypage/mypage.container'
+import MyAnimalPage from '../../src/components/mypage/myanimalpage.container'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function MyPage() {
     return (
         <div>
-            <MyPage />
+            <MyAnimalPage />
         </div>
     )
 }

@@ -15,6 +15,7 @@ export default function RegisterFB({page}) {
 
     const CustomContent = () =>{
         //여기에 이제 등록하기 위한 포맷을 만들어야함
+        //그리고 등록하기 버튼을 누르면 통신되면서 서버에 정보 전송
     }
 
 
