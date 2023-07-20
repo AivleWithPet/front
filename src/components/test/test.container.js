@@ -18,12 +18,6 @@ const MyAnchor = styled(Anchor)`
   border: 1px gray;
 `;
 
-const { Link } = Anchor;
-
-const MyLink = styled(Link)`
-  font-size: 15px;
-  text-decoration: none;
-`
 
 const MyIcon = styled(ReconciliationOutlined)`
   color: red;
@@ -55,23 +49,38 @@ export default function TestContainer() {
   
     return (
       <>
-        <MyAnchor direction='horizontal' targetOffset='30px'>
-          <MyLink href="#part1" title="Page1" />
-          <MyLink href="#part2" title="Page2" />
-          <MyLink href="#part3" title="Page3" />
-        </MyAnchor>
+      <MyAnchor
+        direction="horizontal"
+        items={[
+          {
+            key: 'part-1',
+            href: '#part-1',
+            title: 'Part 1',
+          },
+          {
+            key: 'part-2',
+            href: '#part-2',
+            title: 'Part 2',
+          },
+          {
+            key: 'part-3',
+            href: '#part-3',
+            title: 'Part 3',
+          },
+        ]}
+      />
         <All>
-            <Div>
-                <Div1 id="part1">
-                  <Div11>
+              <Div1 id="part-1">
+                <Div11>
                     <Div1_1>
                       <MyIcon />
                       <div>진단결과입니다.</div>
+                      <div>간단한 진단결과입니다.</div>
                     </Div1_1>
                     <Div1_2>{messagesUrl}</Div1_2>
-                  </Div11>
-                </Div1>
-                <Div4 id="part2">
+                </Div11>
+              </Div1>
+              <Div4 id="part-2">
                     <Div5>
                       <Div2>
                         <Image 
@@ -83,7 +92,7 @@ export default function TestContainer() {
                         <Div3_3_2>{messagesUrl}</Div3_3_2>
                     </Div5>
                 </Div4>
-                <Div3 id="part3">
+                <Div3 id="part-3">
                     <Div3_1>
                         <Div3_2>
                         {messagesUrl}
@@ -94,7 +103,6 @@ export default function TestContainer() {
                         </Div3_3>
                     </Div3_1>
                 </Div3>
-            </Div>
         </All>     
     </>)       
 }

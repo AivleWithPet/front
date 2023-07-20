@@ -2,7 +2,10 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
 export const MainHomePageContainer = styled.div`
+<<<<<<< Updated upstream
   margin-top: calc(100vh - 80vh);
+=======
+>>>>>>> Stashed changes
   display: flex;
   flex-direction: column;
   justify-content: space-between;
