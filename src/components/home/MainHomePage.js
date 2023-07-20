@@ -3,6 +3,50 @@ import { useRouter } from "next/router";
 import { Global } from "@emotion/react";
 import { MainHomePageContainer, MainFontStyles } from "../../../styles/main_emtion";
 import Button from 'react-bootstrap/Button';
+import { Carousel } from 'antd';
+const contentStyle1 = {
+  height: '350px',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+  background: '#364d79',
+  backgroundImage: "url('/1.jpg')",
+  backgroundSize: "cover",
+};
+
+const contentStyle2 = {
+  height: '350px',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+  background: '#364d79',
+  backgroundImage: "url('/2.jpg')",
+  backgroundSize: "cover",
+};
+
+const contentStyle3 = {
+  height: '350px',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+  background: '#364d79',
+  backgroundImage: "url('/3.jpg')",
+  backgroundSize: "cover",
+
+};
+
+const contentStyle4 = {
+  height: '350px',
+  color: '#fff',
+  lineHeight: '160px',
+  textAlign: 'center',
+  background: '#364d79',
+  backgroundImage: "url('/4.jpg')",
+  backgroundSize: "cover",
+};
+
+
+
 
 const MainHomePage = () => {
     const router = useRouter();
@@ -19,11 +63,25 @@ const MainHomePage = () => {
 
     return (
         <>
+            <Carousel autoplay>
+              <div>
+                <h3 style={contentStyle1}>1</h3>
+              </div>
+              <div>
+                <h3 style={contentStyle2}>2</h3>
+              </div>
+              <div>
+                <h3 style={contentStyle3}>3</h3>
+              </div>
+              <div>
+                <h3 style={contentStyle4}>4</h3>
+              </div>
+            </Carousel>
             <MainHomePageContainer>
                 <Global styles={MainFontStyles} ></Global>
                 <div styled={mystyle}>
                     <div>
-                        <h2>BowWow</h2>
+                        <h2 style={{}}>BowWow</h2>
                         <h4>AI 기반<br />
                             진단 헬스 케어 시스템</h4>
                     </div>
