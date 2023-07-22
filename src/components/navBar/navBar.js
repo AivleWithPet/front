@@ -25,6 +25,7 @@ export default function NavBar() {
             <li><Link href="/test">TEST</Link></li>
             <li><Link href="/about">ABOUT</Link></li>
             <li><Link href="/about">Sign in</Link></li>
+            <li><Link href="/kmap">map</Link></li>
             <li><Link href="/about">Sign up</Link></li>
           </ul>
         </div>
