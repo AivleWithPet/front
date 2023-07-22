@@ -18,7 +18,27 @@ export const globalStyles = css`
     }
 
     @font-face {
-        font-family: "myfont2";
-        src: url("/fonts/context.ttf");
+        font-family: "font1";
+        src: url("/fonts/초보.ttf");
+    }
+
+    @font-face {
+        font-family: "font2";
+        src: url("/fonts/표준.ttf");
+    }
+
+    @font-face {
+        font-family: "font3";
+        src: url("/fonts/숙련.ttf");
+    }
+
+    @font-face {
+        font-family: "font4";
+        src: url("/fonts/전문.ttf");
+    }
+
+    @font-face {
+        font-family: "font5";
+        src: url("/fonts/예술.ttf");
     }
 `;
