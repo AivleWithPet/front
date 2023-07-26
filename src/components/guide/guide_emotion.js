@@ -31,6 +31,7 @@ export const Mycontents = styled.div`
 `
 
 export const MyImagediv = styled.div`
+  padding: 0 9em;
 `
 
 export const ButtonDiv = styled.div`

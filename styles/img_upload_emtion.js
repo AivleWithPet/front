@@ -4,7 +4,6 @@ import { css } from "@emotion/react";
 
 
 export const ImgUploadContainer = styled.div`
-  margin-top:50px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

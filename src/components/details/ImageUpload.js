@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { ImgUploadContainer, MainFontStyles } from '../../../styles/img_upload_emtion';
-import { Global } from '@emotion/react';
-import { Button, Modal } from 'antd';
-import { CameraOutlined, CloseCircleOutlined } from '@ant-design/icons';
+import { Modal } from 'antd';
+import { CameraOutlined, CloseCircleOutlined, PropertySafetyFilled } from '@ant-design/icons';
 import axios from 'axios';
 import Preview from './PreView';
+import { Mybutton1, Mybutton2 } from '../examine/examinePage.style';
+import { ButtonDiv } from '../guide/guide_emotion';
+import { useRouter } from 'next/router';
 
-export default function ImageUpload() {
+export default function ImageUpload(props) {
     const [fileList, setFileList] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const formData = new FormData(); // 전역변수로!
-
+    const router = useRouter()
 
     // 이미지 업로드 함수
     const handleFileChange = (event) => {
@@ -42,6 +44,7 @@ export default function ImageUpload() {
             } else {
                 console.log('이미지 전송 실패', response.status);
             }
+            router.push(`${router.aspath}/test`)
         } catch (event) {
             console.error('이미지 전송 실패', event)
         }
@@ -61,9 +64,9 @@ export default function ImageUpload() {
     return (
         <>
             <ImgUploadContainer>
-                <Global styles={MainFontStyles} />
-                <h2>사진 업로드</h2>
-                <h4>AI 진단이 필요한 사진을 업로드 하세요.</h4>
+                {/* <Global styles={MainFontStyles} /> */}
+                {/* <h2>사진 업로드</h2> */}
+                {/* <h4>AI 진단이 필요한 사진을 업로드 하세요.</h4> */}
 
                 {fileList.length > 0 ? (
                     <div style={{ position: 'relative' }}>
@@ -82,7 +85,7 @@ export default function ImageUpload() {
                     </div>
                 ) : (
                     <label htmlFor="file-upload">
-                        <div style={{ width: 'calc(100vw - 55vw)', height: 'calc(100vh - 40vh)', backgroundColor: '#CCCCCC', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <div style={{ width: '47em', height: '35em', backgroundColor: '#CCCCCC', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                             <CameraOutlined style={{ fontSize: '56px' }} />
                             <p style={{ marginTop: '10px' }}>사진을 업로드하려면 클릭하세요.</p>
                             <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
@@ -90,13 +93,18 @@ export default function ImageUpload() {
                     </label>
                 )}
 
-                <Button variant="outline-primary" id='submit-btn' onClick={handleApi}>Submit</Button>
+                <ButtonDiv>
+                    <Mybutton2 onClick={props.prevClick}>이전</Mybutton2>
+                    <Mybutton1 onClick={handleApi}>제출하기</Mybutton1>
+
+                </ButtonDiv>
 
                 {/* 이미지 미첨부시 전송이 불가능하다는 모달 창 추가 */}
                 <Modal
                     title="사진을 첨부해주세요!"
                     open={modalVisible}
                     onOk={handleModalOk}
+                    onCancel={handleModalOk}
                     cancelButtonProps={{ style: { display: 'none' } }}
                 >
                     <p>사진을 첨부하지 않으면 AI 진단이 불가능합니다.</p>

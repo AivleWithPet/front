@@ -19,13 +19,13 @@ export default function NavBar() {
         <Global styles={NavItemStyles}></Global>
         <div>
           <ul id='navbar' className={sideMenuState == true ? "#navbar active" : "#navbar"}>
-            <li><Link href="" className='active'>Home</Link></li>
-            <li><Link href="/guide">GUIDE</Link></li>
-            <li><Link href="/details">UPLOAD</Link></li>
-            <li><Link href="/test">TEST</Link></li>
+            {/* <li><Link href="" className='active'>Home</Link></li> */}
+            {/* <li><Link href="/guide">GUIDE</Link></li> */}
+            {/* <li><Link href="/details">UPLOAD</Link></li> */}
+            <li><Link href="/examine">TEST</Link></li>
             <li><Link href="/about">ABOUT</Link></li>
-            <li><Link href="/about">Sign in</Link></li>
             <li><Link href="/kmap">map</Link></li>
+            <li><Link href="/about">Sign in</Link></li>
             <li><Link href="/about">Sign up</Link></li>
           </ul>
         </div>
