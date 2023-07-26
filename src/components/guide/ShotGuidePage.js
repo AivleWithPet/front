@@ -3,6 +3,7 @@ import { ButtonDiv, GuidePageContainer, MainFontStyles, MyImagediv, Mycontents, 
 import { Global } from "@emotion/react";
 import Button from 'react-bootstrap/Button';
 import { useRouter } from "next/router";
+import ImageUpload from "../details/ImageUpload";
 
 const num = 0;
 export default function ShotGuidePage() {
@@ -20,7 +21,7 @@ export default function ShotGuidePage() {
 
     const nextClick = () => {
         if (num == 2) {
-            router.push(`${router.asPath}/details`)
+            router.push(`${router.asPath}/test`)
             setNum(0)
             return;
         }
@@ -42,13 +43,24 @@ export default function ShotGuidePage() {
                     <Mycontents>
                         <h2>정확한 체크를 위해 꼭 촬영 가이드를 먼저 읽어보세요.</h2>
                     </Mycontents>
+                        {num==2&&
                         <MyImagediv>
-                            <img src={imageSrc} id='imgs' style={{ width: 'calc(100vw - 55vw)', height: 'calc(100vh - 40vh)' }} />
+                            <ImageUpload 
+                            prevClick={prevClick}
+                            />
+                        </MyImagediv>}
+                        {num <= 1 &&
+                        <MyImagediv>
+                            <img src={imageSrc} id='imgs' style={{ width: '47em', height: '35em' }} />
                         </MyImagediv>
-                    <ButtonDiv>
-                        <Button variant="outline-primary" id='btn-1' onClick={prevClick}>이전</Button>
-                        <Button variant="outline-primary" id='btn-2' onClick={nextClick}>다음</Button>
-                    </ButtonDiv>
+                        }
+                        {num <= 1 &&
+                        <ButtonDiv>
+                            <Button variant="outline-primary" id='btn-1' onClick={prevClick}>이전</Button>
+                            <Button variant="outline-primary" id='btn-2' onClick={nextClick}>다음</Button>
+                        </ButtonDiv>
+                        }
+
                 </Textdiv>
             </GuidePageContainer>
         </>
