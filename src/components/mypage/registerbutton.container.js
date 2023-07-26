@@ -24,14 +24,15 @@ export default function RegisterFB({page}) {
       );
 
     // 폼 데이터에 담고 서버 전송
-    const onFinish = async (fieldsValue) => {
-      const files = fieldsValue.photo;
+    const onFinish = async ({fieldsValue,event}) => {
+      event.preventDefault();
+      const files = fieldsValue.photo;//event.target.files; //|| fieldsValue.photo;
       const newFileList = Array.from(files);
       setImg(newFileList);
       console.log(newFileList);
 
       try {
-          formData.append('photo', img); // 그냥 fieldsValue.photo 사용 시 fakepath가 들어감
+          formData.append('photo', img[0]); // 그냥 fieldsValue.photo 사용 시 fakepath가 들어감
           formData.append('name', fieldsValue.name);
           formData.append('species', fieldsValue.species);
           formData.append('birth', fieldsValue.birth.format('YYYY'));
