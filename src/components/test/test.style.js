@@ -5,7 +5,9 @@ export const All =styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 4100px;
+    height: 3300px;
+    background-image: url("/noise.png");
+    background-color: #FAF0E6;
 `
 
 export const Div1 = styled.div`
@@ -16,11 +18,12 @@ export const Div1 = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 1800px;
+    width: 1500px;
 `
 
 export const Div11 = styled.div`
-    width: 1600px;
+    background-color: white;
+    width: 1300px;
     height: 80%;
     display: flex;
     flex-direction: column;
@@ -53,13 +56,12 @@ export const Div2 = styled.div`
 `
 
 export const Div3 = styled.div`
-    width: 1800px;
+    width: 1500px;
     height: 100vh;
     text-Align: 'center';
     background: '#FFFBE9';
     display: flex;
     justify-content: center;
-    margin-top: 130px;
 `
 
 export const Div3_1 = styled.div`
@@ -68,12 +70,12 @@ export const Div3_1 = styled.div`
     justify-content: space-between;
     align-items: center;
     height: 80%;
-    width: 1600px;
-    margin-top: 100px;
     padding-bottom: 60px;
     /* border-radius: 100px; */
     box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
     padding: 5%;
+    background-color: white;
+    width: 1300px;
 `
 
 export const Div3_2 = styled.div`
@@ -95,8 +97,8 @@ export const Div3_3 = styled.div`
 
 export const Div3_3_1 = styled.div`
     height: 100%;
-    border: 1px solid;
-    width: 45%;
+    width: 100%;
+    padding: 1%;
 `
 
 export const Div3_3_2 = styled.div`
@@ -106,8 +108,7 @@ export const Div3_3_2 = styled.div`
 `
 
 export const Div4 = styled.div`
-    margin-top: 130px;
-    width: 1800px;
+    width: 1500px;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -123,4 +124,6 @@ export const Div5 = styled.div`
     justify-content: space-between;
     /* border-radius: 100px; */
     box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
+    background-color: white;
+    width: 1300px;
 `

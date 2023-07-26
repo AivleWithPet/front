@@ -7,7 +7,7 @@ const Preview = ({ fileList }) => {
             {fileList.map((file, index) => (
                 <img
                     key={index}
-                    style={{ maxWidth: '100%', maxHeight: '100%', width: 'calc(100vw - 55vw)', height: 'calc(100vh - 40vh)' }}
+                    style={{ maxWidth: '100%', maxHeight: '100%', width: '47em', height: '38em' }}
                     src={URL.createObjectURL(file)}
                     alt={`Preview ${index}`}
                 ></img>
