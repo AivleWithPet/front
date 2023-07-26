@@ -1,8 +1,18 @@
-import { Popover, Button, Form, Input,DatePicker } from 'antd';
+import React, { useState } from 'react';
+import FormData from 'form-data';
+import axios from 'axios';
+
+import { Popover, Button, Form, Input, DatePicker } from 'antd';
 import { HeartTwoTone } from '@ant-design/icons';
 
 
+
+
 export default function RegisterFB({page}) {
+    const END_URL =  'http://localhost:8080/pet/';
+    const [img , setImg] = useState([]); // 이미지 파일 처리 위함
+    const formData = new FormData(); // 전역변수로!
+
 
     const text = (
         <div>
@@ -12,6 +22,44 @@ export default function RegisterFB({page}) {
         사랑하는 반려동물을 등록할 때 필요한 정보들 입니다.
         </div>
       );
+
+    // 폼 데이터에 담고 서버 전송
+    const onFinish = async (fieldsValue) => {
+      const files = fieldsValue.photo;
+      const newFileList = Array.from(files);
+      setImg(newFileList);
+      console.log(newFileList);
+
+      try {
+          formData.append('photo', img); // 그냥 fieldsValue.photo 사용 시 fakepath가 들어감
+          formData.append('name', fieldsValue.name);
+          formData.append('species', fieldsValue.species);
+          formData.append('birth', fieldsValue.birth.format('YYYY'));
+          // formData.append('accessToken', localStorage.getItem('accessToken'))
+
+          for (let value of formData.values()) {
+            console.log(value);
+          }
+
+          // 실제 전송부
+          // const response = await axios.post(END_URL, formData, {
+          //   headers: {
+          //       "Content-Type": "multipart/form-data",
+          //       withCredentials: true, //CORS
+          //   },
+          // });
+          // if (response.status === 200) {
+          //     console.log('데이터 전송 성공', response.data);
+          // } else {
+          //     console.log('데이터 전송 실패', response.status);
+          // }
+          // router.push(`${router.aspath}/mypage`)
+
+      } catch (error) {
+        console.error('업로드 중 오류가 발생했습니다.', error);
+      }
+    };
+
 
     // 폼 레이아웃
     const formLayout = {
@@ -29,15 +77,6 @@ export default function RegisterFB({page}) {
       };
 
 
-    // 전송 시 값
-    const onFinish = (fieldsValue) => {
-        const values = {
-          ...fieldsValue,
-          'birth': fieldsValue['birth'].format('YYYY'),
-        };
-        console.log('폼 값 확인용: ', values);
-      };
-
     // 폼
     const CustomContent = () =>(
 
@@ -46,10 +85,19 @@ export default function RegisterFB({page}) {
               name="nest-messages"
               onFinish={onFinish}
               style={{
-                maxWidth: 800,
+                maxWidth: 600,
               }}
               validateMessages={validateMessages}
       >
+        {/* 사진 */}
+        <Form.Item
+                name={'photo'}
+                label="사진"
+                rules={[{required: true,},]}
+          >
+          <input type="file" accept="image/*" />
+          </Form.Item>
+
           {/* 이름 */}
           <Form.Item
                 name={'name'}
@@ -60,7 +108,7 @@ export default function RegisterFB({page}) {
           </Form.Item>
           {/* 고양이 종류 */}
           <Form.Item
-                name={ 'speices'}
+                name={ 'species'}
                 label="종류"
                 rules={[{required: true,},]}
           >
@@ -108,3 +156,15 @@ export default function RegisterFB({page}) {
 
 
 }
+
+
+
+    // 전송 시 값, formData로 리프레쉬 토큰까지..를 json으로 하려했던 버전 - 미완
+    // const onFinish = (fieldsValue) => {
+    //   const values = {
+    //     ...fieldsValue,
+    //     'birth': fieldsValue['birth'].format('YYYY'),
+    //   };
+    //   console.log('폼 값 확인용: ', values);
+    // };
+      
