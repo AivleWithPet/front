@@ -21,23 +21,23 @@ export default function SideBar({ handleMenuItemClick }) {
   };
 
   const getPetLists = async () => {
+    const config = {};
+    config.params = {}; // 여기에 멤버 아이디, 토큰 등을 담아 파라미터로 보냄!!!!!!!! 로그인 측과 서버 측에 따라 수정해야하는 부분!!!!!!!
+    config.params["memberId"] = "임시"; // 이런식
+
     try {
-      const response = await axios.get(END_URL, {
-        // 여기선 헤더에 뭐 넣나요? 토큰? 아직 개발중이라길래 보류
-        headers: {
-          "Content-Type": "multipart/form-data",
-          withCredentials: true, // CORS
-        },
-      });
-      const petList = response.data; // 서버에서 받아온 반려동물 이름 리스트
+      const response = await axios.get(END_URL, config);
 
       if (response.status === 200) {
         // 전송 성공 여부 확인하고 리스트로 넘어감
         console.log("데이터 전송 성공", response.data);
+        const petList = response.data; // 서버에서 받아온 반려동물 이름 리스트
+        
         if (petList.length > 0) {
           // 서버에서 받아온 리스트 있으면 해당 리스트로 items 배열을 업데이트
-          const updatedItems = petList.map((petName, index) =>
-            getItem(petName, index + 1)
+          // 받는 데이터는 [{},{},...] 형식
+          const updatedItems = petList.map((petName, petId) =>
+            getItem(petName, petId)
           );
           setItems(updatedItems);
           setSelectedItem(updatedItems[0].key); // 첫 번째 항목을 선택 상태로 설정
@@ -57,7 +57,7 @@ export default function SideBar({ handleMenuItemClick }) {
 
   useEffect(() => {
     getPetLists(); // SideBar 컴포넌트가 처음 마운트될 때 반려동물 이름 리스트를 가져옴
-  }, []);
+  }, []); // 엄...여기도 넣어줘야하나? items 라거나...
 
   return (
     <Menu
