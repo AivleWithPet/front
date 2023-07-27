@@ -16,10 +16,6 @@ export default function LoginPage() {
 
     const router = useRouter();
 
-    const loginSuccess = () => {
-        router.push("/")
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('함수 호출');
@@ -38,14 +34,14 @@ export default function LoginPage() {
                     localStorage.setItem('accessToken', accessToken);
                     localStorage.setItem('refreshToken', refreshToken);
                     localStorage.setItem('name',userName);
-                    // flag 처럼 state를 만들어서, 로그인 성공하면 flag = 1을 _app.js로 넘겨주면 _app.js에서 1일 때, 로그인o 페이지, 0이면 로그인x 페이지
-                    // 로그인o = Sign in, Sign up 지우고, 로그아웃 + 프로필? 기타 등등 나타내기 (삼항연산자)
-                    loginSuccess();
+                    alert("로그인 성공");
+                    router.push("/");
                 } else {
                     console.log('로그인 실패', response.data);
                     alert("로그인 실패 : 이메일 또는 비밀번호가 일치하지 않습니다.");
                 }
             } catch (e) {
+                alert("로그인 실패 : 이메일 또는 비밀번호가 일치하지 않습니다.");
                 console.log('로그인 실패', e);
             };
         }
