@@ -6,6 +6,9 @@ import { Input } from 'antd';
 import axios from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsLoginTrue, setIsLoginFalse } from '../../commons/store/store.js';
+
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -15,6 +18,10 @@ export default function LoginPage() {
     const [passwordError, setErrorPassword] = useState('');
 
     const router = useRouter();
+
+    // redux 관련
+    const loginFlag = useSelector((state)=> {return state.isLogin});
+    const dispatch = useDispatch(); // store.js로 요청을 보내주는 함수
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,14 +42,17 @@ export default function LoginPage() {
                     localStorage.setItem('refreshToken', refreshToken);
                     localStorage.setItem('name',userName);
                     alert("로그인 성공");
+                    dispatch(setIsLoginTrue());
                     router.push("/");
                 } else {
                     console.log('로그인 실패', response.data);
                     alert("로그인 실패 : 이메일 또는 비밀번호가 일치하지 않습니다.");
+                    dispatch(setIsLoginFalse());
                 }
             } catch (e) {
                 alert("로그인 실패 : 이메일 또는 비밀번호가 일치하지 않습니다.");
                 console.log('로그인 실패', e);
+                dispatch(setIsLoginFalse());
             };
         }
 

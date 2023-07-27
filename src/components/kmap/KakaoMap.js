@@ -144,18 +144,18 @@ export default function KakaoMap(props) {
           function getListItem(index, places) {
 
             var el = document.createElement('li'),
-            itemStr = '<br/><span class="markerbg marker_' + (index+1) + '"></span>' +
-                        '<div class="info" style={{border:1px solid}}>' +
+            itemStr = '<br/><span className="markerbg marker_' + (index+1) + '"></span>' +
+                        '<div className="info" style={{border:1px solid}}>' +
                         '   <h3>' + places.place_name + '</h3>';
 
             if (places.road_address_name) {
                 itemStr += '    <span>' + places.road_address_name + '</span>' +
-                            '   <span class="jibun gray">' +  places.address_name  + '</span>' + '<br/>';
+                            '   <span className="jibun gray">' +  places.address_name  + '</span>' + '<br/>';
             } else {
                 itemStr += '    <span>' +  places.address_name  + '</span>'; 
             }
                         
-              itemStr += '  <span class="tel">' + places.phone  + '</span>' + '<br/>' +
+              itemStr += '  <span className="tel">' + places.phone  + '</span>' + '<br/>' +
                         '</div>';           
 
             el.innerHTML = itemStr;
