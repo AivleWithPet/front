@@ -53,7 +53,7 @@ const MainHomePage = () => {
     // 페이지 이동은 yarn에서는 useRouter
 
     const onClickMove = () => {
-        router.push("guide"); //이거 그럼 guide로 바꾸면 되는지?
+        router.push("/examine"); 
     };
 
     const mystyle = {
@@ -88,7 +88,7 @@ const MainHomePage = () => {
                     <div>
                         <Button variant="outline-primary" size="lg" onClick={onClickMove}>Try for it</Button>
                     </div>
-                    <div class='content_text'>
+                    <div className='content_text'>
                         자잘한 서비스 설명이 들어갑니다.<br />
                         내용은 미정입니다.
                     </div>
