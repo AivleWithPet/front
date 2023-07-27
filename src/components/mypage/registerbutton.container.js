@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import { Popover, Button, Form, Input, DatePicker } from 'antd';
 import { HeartTwoTone } from '@ant-design/icons';
+import { NodeNextRequest } from 'next/dist/server/base-http/node';
 
 
 
@@ -22,20 +23,22 @@ export default function RegisterFB({page}) {
         사랑하는 반려동물을 등록할 때 필요한 정보들 입니다.
         </div>
       );
-
-    // 폼 데이터에 담고 서버 전송
-    const onFinish = async ({fieldsValue,event}) => {
-      event.preventDefault();
-      const files = fieldsValue.photo;//event.target.files; //|| fieldsValue.photo;
+    
+    // 이미지 업로드용
+    const handleImg = async(event) => {
+      const files = event.target.files;
       const newFileList = Array.from(files);
       setImg(newFileList);
-      console.log(newFileList);
+      // console.log("제발 리얼패스좀 ㅠㅠ",newFileList);
+    }
 
+    // 폼 데이터에 담고 서버 전송
+    const onFinish = async (fieldsValue) => {
       try {
-          formData.append('photo', img[0]); // 그냥 fieldsValue.photo 사용 시 fakepath가 들어감
           formData.append('name', fieldsValue.name);
           formData.append('species', fieldsValue.species);
           formData.append('birth', fieldsValue.birth.format('YYYY'));
+          formData.append('photo', img[0]); // 그냥 fieldsValue.photo 사용 시 fakepath가 들어감
           // formData.append('accessToken', localStorage.getItem('accessToken'))
 
           for (let value of formData.values()) {
@@ -96,7 +99,8 @@ export default function RegisterFB({page}) {
                 label="사진"
                 rules={[{required: true,},]}
           >
-          <input type="file" accept="image/*" />
+          <div>이미지 첨부</div>
+          <input type="file" accept="image/*" onChange={handleImg} style={{ display: 'none' }}/>
           </Form.Item>
 
           {/* 이름 */}
