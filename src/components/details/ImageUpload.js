@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ImgUploadContainer, MainFontStyles } from '../../../styles/img_upload_emtion';
 import { Modal } from 'antd';
 import { CameraOutlined, CloseCircleOutlined, PropertySafetyFilled } from '@ant-design/icons';
@@ -11,8 +11,14 @@ import { useRouter } from 'next/router';
 export default function ImageUpload(props) {
     const [fileList, setFileList] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [token, setToken] = useState();
     const formData = new FormData(); // 전역변수로!
     const router = useRouter()
+    useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken')
+        setToken(accessToken)
+    }, [])
+    console.log(token)
 
     // 이미지 업로드 함수
     const handleFileChange = (event) => {
@@ -30,14 +36,13 @@ export default function ImageUpload(props) {
         }
         // const formData = new FormData();
         formData.append('file', fileList[0]);
-
+        
         try {
-            const response = await axios.post('http://localhost:8000/ai', formData, {
+            const response = await axios.post('http://localhost:8000/pet/result', formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    withCredentials: true, //CORS
+                    Authorization: `Bearer ${token}`,
                 },
-
             });
             if (response.status === 200) {
                 console.log('이미지 전송 성공', response.data);
@@ -46,7 +51,7 @@ export default function ImageUpload(props) {
             }
             router.push(`${router.aspath}/test`)
         } catch (event) {
-            console.error('이미지 전송 실패', event)
+            console.error('이미지 전송 실패2', event)
         }
     }
 

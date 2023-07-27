@@ -31,7 +31,7 @@ export default function RegisterPage() {
                 if (response.status === 200) {
                     console.log('회원가입 성공', response.data);
                     alert("회원가입이 완료되었습니다.");
-
+                    
                 } else {
                     console.log('회원가입 실패', response.data);
                 }

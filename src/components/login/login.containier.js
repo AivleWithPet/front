@@ -46,7 +46,7 @@ export default function LoginPage() {
                     alert("로그인 실패 : 이메일 또는 비밀번호가 일치하지 않습니다.");
                 }
             } catch (e) {
-                console.log('로그인 실패', e);
+                console.log('로그인 실패aa', e);
             };
         }
 
