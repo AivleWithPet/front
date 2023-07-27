@@ -22,8 +22,16 @@ export default function SideBar({ handleMenuItemClick }) {
 
   const getPetLists = async () => {
     const config = {};
-    config.params = {}; // 여기에 멤버 아이디, 토큰 등을 담아 파라미터로 보냄!!!!!!!! 로그인 측과 서버 측에 따라 수정해야하는 부분!!!!!!!
-    config.params["memberId"] = "임시"; // 이런식
+    config.params = {}; // 여기에 멤버 아이디, 토큰 등을 담아 파라미터로 보냄!!!!
+    config.headers = {};
+    config.params["memberId"] = localStorage.getItem("memberId");
+    config.params["accessToken"] = localStorage.getItem("accessToken");
+    config.headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    };
+    // headers: { 'Content-Type': 'application/json',Authorization: `Bearer ${localStorage.getItem("accessToken")}` }
+    // 여기도 이렇게 따로 줘야 되지않ㅇ음....?
 
     try {
       const response = await axios.get(END_URL, config);
@@ -32,7 +40,7 @@ export default function SideBar({ handleMenuItemClick }) {
         // 전송 성공 여부 확인하고 리스트로 넘어감
         console.log("데이터 전송 성공", response.data);
         const petList = response.data; // 서버에서 받아온 반려동물 이름 리스트
-        
+
         if (petList.length > 0) {
           // 서버에서 받아온 리스트 있으면 해당 리스트로 items 배열을 업데이트
           // 받는 데이터는 [{},{},...] 형식

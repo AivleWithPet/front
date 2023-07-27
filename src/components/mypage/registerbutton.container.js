@@ -43,14 +43,13 @@ export default function RegisterFB({ page }) {
       formData.append("species", fieldsValue.species);
       formData.append("birth", fieldsValue.birth.format("YYYY"));
       formData.append("photo", img); // 이미지 파일 추가
+      formData.append("info", fieldsValue.info); // info인데 필수는 아님...
       formData.append("accessToken", localStorage.getItem("accessToken")); // 액세스 토큰 추가
 
-      // for (let value of formData.values()) {
-      //   console.log(value);
-      // }
-      // 실제 전송부
+      // 실제 전송부...인데 원래 formData가 아니라 여기 headers에 엑세스 토큰이 따로 드가야되지않음?? 그래서 일단 두개 다 줌!
       const response = await axios.post(END_URL, formData, {
         headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           "Content-Type": "multipart/form-data",
           withCredentials: true, //CORS
         },
@@ -115,6 +114,10 @@ export default function RegisterFB({ page }) {
       {/* 생년 */}
       <Form.Item name="birth" label="생년" rules={[{ required: true }]}>
         <DatePicker picker="year" />
+      </Form.Item>
+      {/* 정보 */}
+      <Form.Item name="info" label="비고">
+        <Input placeholder="Please input" />
       </Form.Item>
       {/* 버튼 */}
       <Form.Item
