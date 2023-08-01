@@ -28,6 +28,8 @@ export default function MyAnimalPage() {
     setPetList(tempPetList);
   }, []); // 빈 배열을 전달하여 처음 마운트될 때만 실행되도록 함
 
+  console.log("파라미터 확인", selectedItem);
+
   //   useEffect(() => {
   //     getPetLists();
   //   }, []);
