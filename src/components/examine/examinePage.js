@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router'
 import * as S from './examinePage.style'
+import { useState } from 'react';
 
 export default function ExaminePageComponent() {
   const router = useRouter()
-
+  
   const nextpage = () => {
     router.push(`${router.asPath}/guide`)
   }  

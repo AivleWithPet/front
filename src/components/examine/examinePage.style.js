@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import { Select, Space } from "antd"
 
 export const background = styled.div`
   background-image: url("/examine/examinebg.png");
@@ -127,3 +128,4 @@ export const Mybutton2 = styled.button`
     transform: translateY(0);
   }
 `
+
