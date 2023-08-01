@@ -16,7 +16,7 @@ const MyAnchor = styled(Anchor)`
   text-decoration: none;
   height: 70px;
   border: 1px gray;
-`;
+`
 
 
 const MyIcon = styled(ReconciliationOutlined)`

@@ -5,7 +5,6 @@ export const All =styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 2200px;
     background-image: url("/noise.png");
     background-color: #FAF0E6;
 `
@@ -19,7 +18,8 @@ export const Div1 = styled.div`
     align-items: center;
     justify-content: center;
     width: 1500px;
-    margin-top: 2em;
+    margin-top: 4%;
+    margin-bottom: 6%;
 `
 
 export const Div11 = styled.div`
@@ -66,11 +66,12 @@ export const Div2 = styled.div`
 
 export const Div3 = styled.div`
     width: 1500px;
-    height: 100vh;
+    height: auto;
     text-Align: 'center';
     background: '#FFFBE9';
     display: flex;
     justify-content: center;
+    margin-bottom: 6%;
 `
 
 export const Div3_1 = styled.div`
@@ -78,7 +79,7 @@ export const Div3_1 = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 80%;
+    height: 90%;
     padding-bottom: 60px;
     /* border-radius: 100px; */
     box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
