@@ -83,7 +83,7 @@ export default function ImageUpload() {
 
     return (
         <>
-            <ImgUploadContainer>
+            <ImgUploadContainer style={{border: '1px solid'}}>
                 <Global styles={MainFontStyles} ></Global>
                 <h2>사진 업로드</h2>
                 <h4>사진을 업로드 하세요.</h4>
