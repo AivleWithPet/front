@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import FormData from "form-data";
 import axios from "axios";
 
-import { Popover, Button, Form, Input, DatePicker } from "antd";
+import { Popover, Button, Form, Input, DatePicker, message } from "antd";
 import { HeartTwoTone } from "@ant-design/icons";
 
 export default function RegisterFB({ page }) {
@@ -56,12 +56,13 @@ export default function RegisterFB({ page }) {
       });
       if (response.status === 200) {
         console.log("데이터 전송 성공", response.data);
+        message.success("등록이 완료되었습니다."); // 성공 메시지 보여주기
       } else {
         console.log("데이터 전송 실패", response.status);
       }
-      // 전송 완료 후 선택된 파일 초기화
+      // 전송 완료 후 선택된 파일 초기화 &  새로고침
       setImg([]);
-      router.push(`${router.aspath}/mypage`);
+      router.push("/mypage");
     } catch (error) {
       setImg([]);
       console.error("업로드 중 오류가 발생했습니다.", error);
@@ -93,15 +94,17 @@ export default function RegisterFB({ page }) {
     >
       {/* 파일 선택 버튼 */}
       <Form.Item name="photo" label="사진">
-        <Button onClick={handleButtonClick}>파일 선택</Button>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          ref={fileInputRef}
-          style={{ display: "none" }}
-        />
-        {img && <div>{img.name}</div>}
+        <div>
+          <Button onClick={handleButtonClick}>파일 선택</Button>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            ref={fileInputRef}
+            style={{ display: "none" }}
+          />
+          {img && <div>{img.name}</div>}
+        </div>
       </Form.Item>
       {/* 이름 */}
       <Form.Item name="name" label="이름" rules={[{ required: true }]}>
