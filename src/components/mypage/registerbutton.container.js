@@ -61,7 +61,7 @@ export default function RegisterFB({ page }) {
       }
       // 전송 완료 후 선택된 파일 초기화
       setImg([]);
-      router.push(`${router.aspath}/mypage`);
+      router.push("/mypage");
     } catch (error) {
       setImg([]);
       console.error("업로드 중 오류가 발생했습니다.", error);

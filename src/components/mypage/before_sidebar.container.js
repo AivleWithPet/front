@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Menu } from "antd";
 import axios from "axios";
-
-import SideBar from "./sidebar.container";
-import RegisterFB from "./registerbutton.container";
-
-import { Layout } from "antd";
-const { Content, Sider } = Layout;
 
 const END_URL = "http://localhost:8080/pet/myPets";
 
@@ -16,12 +11,13 @@ function getItem(label, key) {
   };
 }
 
-export default function MyAnimalPage() {
+export default function SideBar({  handleMenuItemClick }) {
+  const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(1);
+
   const handleMenuClick = (key) => {
     setSelectedItem(key);
-    console.log("상위로 오는거 맞니?", selectedItem);
-    //여기서 실제 리스트 데이터에서 여기에 맞게 설정
+    handleMenuItemClick(key);
   };
 
   const getPetLists = async () => {
@@ -35,14 +31,17 @@ export default function MyAnimalPage() {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     };
 
+
     try {
       const response = await axios.get(END_URL, config);
 
       if (response.status === 200) {
+        // 전송 성공 여부 확인하고 리스트로 넘어감
         console.log("데이터 전송 성공", response.data);
         const petList = response.data; // 서버에서 받아온 반려동물 이름 리스트
 
         if (petList.length > 0) {
+          // 서버에서 받아온 리스트 있으면 해당 리스트로 items 배열을 업데이트
           // 받는 데이터는 [{},{},...] 형식
           const updatedItems = petList.map((petName, petId) =>
             getItem(petName, petId)
@@ -50,6 +49,8 @@ export default function MyAnimalPage() {
           setItems(updatedItems);
           setSelectedItem(updatedItems[0].key); // 첫 번째 항목을 선택 상태로 설정
         } else {
+          // 리스트가 비어있다면 등록 유도 메시지를 보여주기 위해 items 배열을 빈 배열로 설정
+          // 등록유도 메세지는 따로 만들기
           setItems([]);
           setSelectedItem(null); // 선택 상태도 초기화
         }
@@ -63,23 +64,23 @@ export default function MyAnimalPage() {
 
   useEffect(() => {
     getPetLists(); // SideBar 컴포넌트가 처음 마운트될 때 반려동물 이름 리스트를 가져옴
-  }, []);
+  }, []); 
 
   return (
-    <Layout style={{ height: "calc(100vh - 80px)", display: "flex" }}>
-      <Sider
-        width={300}
-        style={{ color: "white", boxShadow: "2px 2px 2px rgba(0, 0, 0, 0.1)" }}
-      >
-        <SideBar handleMenuItemClick={handleMenuClick} />
-      </Sider>
-
-      <Layout style={{ padding: "0 24px 24px", backgroundColor: "gray" }}>
-        <Content>
-          {/* 여기에 리스트 컴포넌트가 들어가고  selectedItem를 포함한 data를 파라미터로 전달해줌*/}
-        </Content>
-        <RegisterFB page={"mypage"} />
-      </Layout>
-    </Layout>
+    <Menu
+      mode="inline"
+      defaultSelectedKeys={[1]}
+      selectedKeys={[selectedItem]}
+      onClick={({ key }) => handleMenuClick(key)}
+    >
+      {items.length > 0 ? (
+        items.map((item) => <Menu.Item key={item.key}>{item.label}</Menu.Item>)
+      ) : (
+        <Menu.Item key="register">
+          {/* key도 바꾸면 됨...상위 컴포넌트로 올라가는 값에 해당하는거라 */}
+          등록 유도 내용 컴포넌트가 들어갈 예정임다
+        </Menu.Item>
+      )}
+    </Menu>
   );
 }
