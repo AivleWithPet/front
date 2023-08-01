@@ -14,9 +14,7 @@ export default function SideBar({ petList, selectedItem, onItemClick }) {
           <Menu.Item key={item.petId}>{item.petName}</Menu.Item>
         ))
       ) : (
-        <Menu.Item key="register">
-          등록 유도 내용 컴포넌트가 들어갈 예정입니다.
-        </Menu.Item>
+        <Menu.Item key="register">서비스가 처음이신가요?</Menu.Item>
       )}
     </Menu>
   );

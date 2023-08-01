@@ -10,13 +10,6 @@ const { Content, Sider } = Layout;
 
 const END_URL = "http://localhost:8080/pet/myPets";
 
-function getItem(label, key) {
-  return {
-    key,
-    label,
-  };
-}
-
 export default function MyAnimalPage() {
   const [petList, setPetList] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -45,10 +38,12 @@ export default function MyAnimalPage() {
   //         "Content-Type": "application/json",
   //         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
   //       },
+  //        withCredentials: true,
   //       params: {
   //         memberId: localStorage.getItem("memberId"),
   //         accessToken: localStorage.getItem("accessToken"),
   //       },
+
   //     };
 
   //     try {
@@ -59,7 +54,7 @@ export default function MyAnimalPage() {
   //         setPetList(response.data); // 서버에서 받아온 반려동물 data
   //         setSelectedItem(
   //           response.data.length > 0 ? response.data[0].petID : null
-  //         );
+  //         ); // 기본 선택
   //       } else {
   //         console.log("데이터 전송 실패", response.status);
   //       }
