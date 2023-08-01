@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { HList, HListPage } from './map.style';
+
 
 export default function KakaoMap(props) {
   useEffect(() => {
@@ -166,7 +168,9 @@ export default function KakaoMap(props) {
 
           // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
           function addMarker(position, idx, title) {
-            var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+            // '../../../public/pet_marker_origin.png'
+            // https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png
+            var imageSrc = './pet_marker_origin.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
                 imageSize = new kakao.maps.Size(36, 37),  // 마커 이미지의 크기
                 imgOptions =  {
                     spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
@@ -248,12 +252,10 @@ export default function KakaoMap(props) {
 
 
   return (
-    <div className="map_wrap" style={{ width:'100%',display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
-      <div
-        id="map"
-        style={{ width: "50%", height: "607px"}}
-      ></div>
-      <div id="menu_wrap" className="bg_white">
+    <div className="map_wrap" style={{ width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
+      
+      <div id="map" style={{ width: "50%"}}></div>
+      <div id="menu_wrap" className="bg_white" style={{border:'0px solid white'}}>
         <div className="option">
           <div style={{display:'none'}}>
             <form onSubmit={() => searchPlaces()}>
@@ -263,10 +265,15 @@ export default function KakaoMap(props) {
             </form>
           </div>
         </div>
-        <hr />
-        <div style={{overflow:'auto', width: '35em', height: '37em', display:'flex', flexDirection:'column', justifyContent:'space-evenly'}}>
-          <ul id="placesList" style={{listStyle:'none'}}></ul>
-          <div id="pagination" style={{textAlign:'center'}}></div>
+        
+        
+        <div style={{overflow:'auto', width: '38em', height: '36em', display:'flex', flexDirection:'column', justifyContent:'space-evenly'}}>
+          <HList>
+            <ul id="placesList" style={{listStyle:'none'}}></ul>
+          </HList>
+          <HListPage>
+            <div id="pagination" style={{textAlign:'center', display:'none'}}></div>
+          </HListPage>
         </div>
       </div>
     </div>
