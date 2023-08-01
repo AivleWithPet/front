@@ -38,9 +38,11 @@ export default function LoginPage() {
                     const accessToken = response.data.accessToken;
                     const refreshToken = response.data.refreshToken;
                     const userName = response.data.name;
+                    const memberId = response.data.memberId;
                     localStorage.setItem('accessToken', accessToken);
                     localStorage.setItem('refreshToken', refreshToken);
                     localStorage.setItem('name',userName);
+                    localStorage.setItem('memberId', memberId)
                     alert("로그인 성공");
                     dispatch(setIsLoginTrue());
                     router.push("/");

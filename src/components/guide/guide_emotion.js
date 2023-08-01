@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import { Select, Space, Steps } from "antd";
 
 
 export const GuidePageContainer = styled.div`
@@ -17,13 +18,17 @@ export const Textdiv = styled.div`
   box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background-color: white;
+  width: 60vw;
+  height: 38vw;
+  min-height: 729px;
+  min-width: 1152px;
+  position: relative;
 `
 
 export const Title = styled.div`
-  padding-top: 2em;
+  padding-top: 4em;
 `
 
 export const Mycontents = styled.div`
@@ -31,6 +36,7 @@ export const Mycontents = styled.div`
 `
 
 export const MyImagediv = styled.div`
+  margin-top: 5em;
   padding: 0 9em;
 `
 
@@ -39,6 +45,8 @@ export const ButtonDiv = styled.div`
   display: flex;
   justify-content: space-between;
   width: 20em;
+  position: absolute;
+  bottom : 20px;
 `
 export const MainFontStyles = css`
   h1 {
@@ -160,4 +168,22 @@ export const MainFontStyles = css`
       font-weight: normal;
       font-style: normal;
   }
+`
+
+export const MySpace = styled(Space)`
+  display: flex;
+  flex-direction: column;
+  margin-top: 5em;
+  height: 25vh;
+  width: 325px;
+  justify-content: space-between;
+`
+
+export const MySelect = styled(Select)`
+  text-align: center;
+  width: 325px;
+`
+
+export const MySteps= styled(Steps)`
+  width: 80%;
 `
