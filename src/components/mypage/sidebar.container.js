@@ -11,6 +11,8 @@ function getItem(label, key) {
   };
 }
 
+
+// 상위로 보낼때 전체데이터도 같이 보내기
 export default function SideBar({ handleMenuItemClick }) {
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(1);
