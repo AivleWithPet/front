@@ -7,6 +7,7 @@ import { All, Div, Div1, Div11, Div1_1, Div1_2, Div2,
 import axios from 'axios'
 import { useState, useEffect } from 'react';
 import KakaoMap from '../kmap/KakaoMap';
+import { useDispatch, useSelector } from 'react-redux'; // 리덕스 관련
 
 const MyAnchor = styled(Anchor)`
   display: flex;
@@ -37,12 +38,14 @@ export default function TestContainer() {
 	  // fetchDog()
 	  // 	},[])
   const dogsUrl = 3
+  const transData = useSelector((state) => {return state.isTrans}); // 리덕스 관련
 
   const [messagesUrl,setMessageUrl] = useState("")  
   useEffect(()=>{
     const fetchMesage = async ()=>{
       const result = await axios.get("https://api.breakingbadquotes.xyz/v1/quotes")
       // console.log(result.data[0].quote)
+      console.log(transData);
       setMessageUrl(result.data[0].quote)
         }
 
