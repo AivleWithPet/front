@@ -8,16 +8,20 @@ import { Mybutton1, Mybutton2 } from '../examine/examinePage.style';
 import { ButtonDiv } from '../guide/guide_emotion';
 import { useRouter } from 'next/router';
 import FormData from 'form-data';
+import { useDispatch, useSelector } from 'react-redux'; // 리덕스 관련
+import {setIsTrans} from '../../commons/store/store.js'
 
 export default function ImageUpload(props) {
     const [fileList, setFileList] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [token, setToken] = useState();
+    const transData = useSelector((state) => {return state.isTrans}); // 리덕스 관련
+    const dispatch = useDispatch();
     const formData = new FormData(); // 전역변수로!
     useEffect(() => {
         setToken(localStorage.getItem("accessToken"))
     }, [])
-
+    
 
     const router = useRouter()
 
@@ -51,7 +55,9 @@ export default function ImageUpload(props) {
 
             });
             console.log('이미지 전송 성공', response.data);
-            router.push(`${router.asPath}/test`)
+            dispatch(setIsTrans(response.data.result));
+            console.log(transData);
+            router.push(`${router.asPath}/test`);
         } catch (event) {
             console.error('이미지 전송 실패', event)
         }
