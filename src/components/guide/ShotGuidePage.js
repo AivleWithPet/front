@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ButtonDiv, GuidePageContainer, MainFontStyles, MyImagediv, MySelect, MySpace, MySteps, Mycontents, Textdiv, Title } from "./guide_emotion";
+import { ButtonDiv, GuidePageContainer, MainFontStyles, MyImagediv, MySelect, MySpace, MySteps, Mycontents, PetDiv, Textdiv, Title } from "./guide_emotion";
 import { Global } from "@emotion/react";
 import Button from 'react-bootstrap/Button';
 import { useRouter } from "next/router";
@@ -113,15 +113,15 @@ export default function ShotGuidePage() {
                     {num == 0&&   
                     <MySpace>
                         {petname?(
-                            <div style={{display:"flex", flexDirection:"row", width:"20vw", justifyContent:"left"}}>  
+                            <PetDiv>  
                                 <img src='/1.jpg' width="150px" height='150px'></img>
                                 <div style={{marginLeft:"20px", display:"flex", flexDirection:"column", justifyContent:"left", textAlign:"left"}}>
                                     <div>이름 : {petname}</div> 
                                     <div>종 : {petspecies}</div> 
-                                    <div>생일 : {petbirthYear}</div>
+                                    <div>출생년도 : {petbirthYear}</div>
                                     <div>설명 : {petinfo}</div>
                                 </div>
-                            </div>
+                            </PetDiv>
                         ) :''}
                         <MySelect
                         defaultValue="반려동물을 선택해주세요"
