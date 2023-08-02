@@ -29,10 +29,6 @@ export default function MyAnimalPage() {
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
       withCredentials: true,
-      params: {
-        memberId: localStorage.getItem("memberId"),
-        accessToken: localStorage.getItem("accessToken"),
-      },
     };
 
     try {
