@@ -32,7 +32,7 @@ export default function ImageUpload(props) {
         setFileList(newFileList);
     };
     // 이미지 서버 전송 함수
-    const handleApi = async (event) => {
+    const handleApi = async () => {
         if (fileList.length === 0) {
             setModalVisible(true);
             return;

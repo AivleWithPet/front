@@ -184,6 +184,15 @@ export const MySelect = styled(Select)`
   width: 325px;
 `
 
+export const PetDiv = styled.div`
+  display: flex;
+  flex-direction : row;
+  width: 20vw;
+  justify-content : left;
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+  padding: 5%;
+`
+
 export const MySteps= styled(Steps)`
   width: 80%;
 `
