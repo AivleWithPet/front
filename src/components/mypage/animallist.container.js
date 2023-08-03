@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import RegisterInduction from "./induction.container";
 
 const END_URL = "http://localhost:8080/pet";
 
@@ -7,6 +8,7 @@ const END_URL = "http://localhost:8080/pet";
 
 export default function AnimalListView({ selectedItem }) {
   const [petData, setPetData] = useState(null);
+  console.log("젤처음뭔데", selectedItem);
 
   useEffect(() => {
     if (selectedItem != "register") {
@@ -34,7 +36,7 @@ export default function AnimalListView({ selectedItem }) {
         console.log("반려동물 데이터 가져오기 실패", response.status);
       }
     } catch (error) {
-      console.error("Error fetching pet data:", error);
+      console.error("animallist 컨테이너 에러:", error);
     }
   };
 
@@ -42,9 +44,14 @@ export default function AnimalListView({ selectedItem }) {
   return (
     <div>
       {selectedItem === "register" ? (
-        <div>반려동물을 등록하세요!</div>
+        <div>
+          <RegisterInduction />
+        </div>
       ) : (
-        <div>{selectedItem} 선택된 반려동물의 정보를 보여주는 컴포넌트</div>
+        <div>
+          {selectedItem}여기에 펫데이터 쓸거임 굳이 컴포넌트 안 만들고 여기 위에
+          const로 하자
+        </div>
       )}
     </div>
   );
