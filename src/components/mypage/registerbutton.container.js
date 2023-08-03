@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useRouter } from "next/router";
 import FormData from "form-data";
 import axios from "axios";
 
@@ -8,6 +9,7 @@ import { HeartTwoTone } from "@ant-design/icons";
 export default function RegisterFB({ page }) {
   const END_URL = "http://localhost:8080/pet/";
   const [img, setImg] = useState(null);
+  const router = useRouter();
 
   const text = (
     <div>
