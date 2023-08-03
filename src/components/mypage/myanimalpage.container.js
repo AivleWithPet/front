@@ -41,7 +41,7 @@ export default function MyAnimalPage() {
         console.log("데이터 전송 성공", response.data);
         setPetList(response.data); // 서버에서 받아온 반려동물 data
         setSelectedItem(
-          response.data.length > 0 ? response.data[0].petID : null
+          response.data.length > 0 ? response.data[0].petId : null
         ); // 기본 선택
       } else {
         console.log("데이터 전송 실패", response.status);
