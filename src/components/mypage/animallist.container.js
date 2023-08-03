@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const END_URL = "http://localhost:8080/pet/";
+const END_URL = "http://localhost:8080/pet";
 
 // pet/{pet_id}로 통신하면 됨
 
