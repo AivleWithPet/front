@@ -37,6 +37,11 @@ export default function ImageUpload(props) {
             setModalVisible(true);
             return;
         }
+        if (!props.choosepet) {
+            alert("반려동물을 선택해주세요.");
+            props.setNum(0);
+            return;
+        }
         formData.append('file', fileList[0]);
         formData.append('pet_id', props.choosepet)
         formData.append('token', token)
@@ -52,7 +57,6 @@ export default function ImageUpload(props) {
                     Authorization: `Bearer ${token}`
                 },
                 withCredentials: true,
-
             });
             console.log('이미지 전송 성공', response.data);
             dispatch(setIsTrans(response.data.result));
@@ -76,10 +80,6 @@ export default function ImageUpload(props) {
     return (
         <>
             <ImgUploadContainer>
-                {/* <Global styles={MainFontStyles} /> */}
-                {/* <h2>사진 업로드</h2> */}
-                {/* <h4>AI 진단이 필요한 사진을 업로드 하세요.</h4> */}
-
                 {fileList.length > 0 ? (
                     <div style={{ width: '24em', height: '20em',position: 'relative' }}>
                         <Preview fileList={fileList} />
@@ -97,7 +97,7 @@ export default function ImageUpload(props) {
                     </div>
                 ) : (
                     <label htmlFor="file-upload">
-                        <div style={{ width: '24em', height: '20em', backgroundColor: '#CCCCCC', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <div style={{ width: '24em', height: '19em', backgroundColor: '#CCCCCC', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', borderRadius:"15px" }}>
                             <CameraOutlined style={{ fontSize: '56px' }} />
                             <p style={{ marginTop: '10px' }}>사진을 업로드하려면 클릭하세요.</p>
                             <input id="file-upload" type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />

@@ -31,7 +31,7 @@ export const NavContainer = styled.div `
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #252a2c;
+  background-color: white;
   /* background-color: #E8904F ; */
   padding: 20px 80px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.5);
@@ -55,7 +55,7 @@ export const NavItemStyles  = css`
     text-decoration: none;
     font-size: 1.3rem;
     font-weight: 600;
-    color: #fff;
+    color: black;
     transition: 0.3s ease-in-out;
   }
   
