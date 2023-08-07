@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { ButtonDiv, GuidePageContainer, MainFontStyles, MyImagediv, MySelect, MySpace, MySteps, Mycontents, PetDiv, Textdiv, Title } from "./guide_emotion";
+import { ButtonDiv, Caution, Explain, GuidePageContainer, Image1, Info, MainFontStyles, MyImagediv, MySelect, MySpace, MySteps, Mycontents, PetDiv, Textdiv, Title, Uploaddiv } from "./guide_emotion";
 import { Global } from "@emotion/react";
 import Button from 'react-bootstrap/Button';
 import { useRouter } from "next/router";
 import ImageUpload from "../details/ImageUpload";
-import { Steps } from "antd";
+import { Card } from "antd";
 import axios from "axios";
 
-const num = 0;
+const { Meta } = Card
 export default function ShotGuidePage() {
     const END_URL = "http://localhost:8080/pet/myPets";
 
     const router = useRouter();
 
-    const [imageSrc, setImageSrc] = useState("/img/image0.png");
     const [num ,setNum] = useState(0)
     const [mypet, setMypet] = useState([]);
     const [choosepet, setChoosepet] = useState()
     const [petname, setPetname] = useState()
     const [petspecies, setSpecies] = useState()
-    const [petbirthYear, setBirthYear] = useState()
-    const [petinfo, setInfo] = useState()
 
     const description1 = '반려동물을 선택해주세요.';
     const description2 = '사진업로드시 주의사항';
@@ -55,8 +52,6 @@ export default function ShotGuidePage() {
         const petinfo = mypet.find((el) => el.petId === e)
         setPetname(petinfo.petName)
         setSpecies(petinfo.species)
-        setBirthYear(petinfo.birthYear)
-        setInfo(petinfo.info)
     };
 
     const prevClick = () => {
@@ -64,21 +59,17 @@ export default function ShotGuidePage() {
           router.push("/examine")  
         } else {
             setNum(prev => prev-1);
-            setImageSrc("/img/image" + num + ".png");
-            console.log(num)
         }
     };
 
     const nextClick = () => {
         if (num == 2) {
-            router.push(`${router.asPath}/test`)
             setNum(0)
+            router.push(`${router.asPath}/test`)
             return;
         }
         else {
             setNum(prev => prev + 1);
-            setImageSrc("/img/image" + num + ".png");
-            console.log(num)
         }
     };
 
@@ -88,10 +79,10 @@ export default function ShotGuidePage() {
                 <Global styles={MainFontStyles} ></Global>
                 <Textdiv>
                     <Title>
-                        <h1>촬영 가이드</h1>
+                        <h2>촬영 가이드</h2>
                     </Title>
                     <Mycontents>
-                        <h2>정확한 체크를 위해 꼭 촬영 가이드를 먼저 읽어보세요.</h2>
+                        <Caution style={{marginBottom: '2em'}}>정확한 진단을 위해 아래의 순서를 따라주세요.</Caution>
                     </Mycontents>
                     <MySteps
                         current={num}
@@ -113,34 +104,45 @@ export default function ShotGuidePage() {
                     {num == 0&&   
                     <MySpace>
                         {petname?(
-                            <PetDiv>  
-                                <img src='/1.jpg' width="150px" height='150px'></img>
-                                <div style={{marginLeft:"20px", display:"flex", flexDirection:"column", justifyContent:"left", textAlign:"left"}}>
-                                    <div>이름 : {petname}</div> 
-                                    <div>종 : {petspecies}</div> 
-                                    <div>출생년도 : {petbirthYear}</div>
-                                    <div>설명 : {petinfo}</div>
-                                </div>
-                            </PetDiv>
-                        ) :''}
-                        <MySelect
-                        defaultValue="반려동물을 선택해주세요"
-                        onChange={handleChange}
-                        options={options} />
+                                <Card
+                                    hoverable
+                                    style={{width: 300}}
+                                    cover={<img src='/1.jpg' width="250px" height='250px'></img>}
+                                    >
+                                    <Meta 
+                                        title={petname}
+                                        description={petspecies}
+                                    />
+                                </Card>
+                        ) : (
+                            <MySelect
+                            defaultValue="반려동물을 선택해주세요"
+                            onChange={handleChange}
+                            options={options} />
+                        )}
                     </MySpace>}
                     {num == 1&&
                         <MyImagediv>
-                            <h3>1. 사진을 찍을 때 눈을 똑바로 뜬 사진을 찍어주세요!</h3>
-                            <h3>2. 사진이 흔들리지 않게 블라블라</h3>
-                            <h3>3. 블라블라..</h3>
+                            <Image1>
+                                <Caution>1. 정면을 응시한 채로 눈을 똑바로 뜬 상태로 찍어주세요!</Caution>
+                                <img src="/caution/cats1.png" width="300px"/>
+                            </Image1>
+                            <Image1>
+                                <Caution>2. 사진이 흔들리지 않게 주의해주세요!</Caution>
+                                <img src="/caution/cats2.png" width="300px"/>
+                            </Image1>                            <Image1>
+                                <Caution>3. 여러마리가 아닌 한 마리만 찍어주세요!</Caution>
+                                <img src="/caution/cats3.png" width="300px" style={{paddingBottom:"40px"}}/>
+                            </Image1>
                         </MyImagediv>}
                     {num==2&&
-                        <MyImagediv>
+                        <Uploaddiv>
                             <ImageUpload 
                                 prevClick={prevClick}
                                 choosepet={choosepet}
+                                setNum={setNum}
                             />
-                        </MyImagediv>}
+                        </Uploaddiv>}
                     {num <= 1 &&
                     <ButtonDiv>
                         <Button variant="outline-primary" id='btn-1' onClick={prevClick}>이전</Button>

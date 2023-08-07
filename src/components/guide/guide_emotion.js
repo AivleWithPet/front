@@ -9,10 +9,8 @@ export const GuidePageContainer = styled.div`
   justify-content: center;
   align-items:center;
   text-align: center;
-  background-image: url("/examine/examinebg.png");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
   height: calc(100vh - 80px);
+  background-color: #EEF3FF;
 `
 export const Textdiv = styled.div`
   box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
@@ -25,6 +23,7 @@ export const Textdiv = styled.div`
   min-height: 729px;
   min-width: 1152px;
   position: relative;
+  border-radius: 35px;
 `
 
 export const Title = styled.div`
@@ -36,28 +35,44 @@ export const Mycontents = styled.div`
 `
 
 export const MyImagediv = styled.div`
+  margin-top: 3em;
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  justify-content: space-between;
+`
+
+export const Uploaddiv = styled.div`
   margin-top: 5em;
-  padding: 0 9em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`
+
+export const Caution = styled.p`
+  font-size: 17px;
+`
+
+export const Image1 = styled.div`
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `
 
 export const ButtonDiv = styled.div`
-  padding: 2em 0;
   display: flex;
   justify-content: space-between;
-  width: 20em;
+  width: 15em;
   position: absolute;
-  bottom : 20px;
+  bottom : 25px;
 `
 export const MainFontStyles = css`
   h1 {
     font-weight: 1000;
-    font-family: 'font1';
   }
 
-  h2 {
-    font-family: 'font2';
-    margin-bottom: 20px;
-  }
 
   #btn-1 {
     align-items: center;
@@ -70,7 +85,7 @@ export const MainFontStyles = css`
     cursor: pointer;
     display: inline-flex;
     font-family: "font1";
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 600;
     justify-content: center;
     line-height: 1.25;
@@ -83,8 +98,8 @@ export const MainFontStyles = css`
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: baseline;
-    width: 133.08px;
-    height: 48.67px;
+    width: 100.08px;
+    height: 30.67px;
 
     &:hover,
     &:focus {
@@ -109,17 +124,16 @@ export const MainFontStyles = css`
 
   #btn-2 {
     align-items: center;
-    background-clip: padding-box;
-    background-color: #fa6400;
-    border: 1px solid transparent;
+    background-color: #EEF3FF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: .25rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
     box-sizing: border-box;
-    color: #fff;
+    color: #1677ff;
     cursor: pointer;
     display: inline-flex;
     font-family: "font1";
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 600;
     justify-content: center;
     line-height: 1.25;
@@ -132,18 +146,26 @@ export const MainFontStyles = css`
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: baseline;
-    width: 138.08px;
-    height: 48.67px;
+    width: 100.08px;
+    height: 30.67px;
+
     &:hover,
     &:focus {
-      background-color: #fb8332;
+      border-color: rgba(0, 0, 0, 0.15);
       box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+      color: #1677ff;
     }
 
+    &:hover {
+      transform: translateY(-1px);
+    }
 
     &:active {
-      background-color: #c85000;
-      box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+      background-color: #F0F0F1;
+      
+      border-color: rgba(0, 0, 0, 0.15);
+      box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+      color: #1677ff;
       transform: translateY(0);
     }
   }
@@ -173,7 +195,7 @@ export const MainFontStyles = css`
 export const MySpace = styled(Space)`
   display: flex;
   flex-direction: column;
-  margin-top: 5em;
+  margin-top: 3em;
   height: 25vh;
   width: 325px;
   justify-content: space-between;
@@ -187,10 +209,18 @@ export const MySelect = styled(Select)`
 export const PetDiv = styled.div`
   display: flex;
   flex-direction : row;
-  width: 20vw;
+  width: 35vw;
+  height: 30vh;
   justify-content : left;
   box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
   padding: 5%;
+`
+export const Info = styled.div`
+  display: flex;
+`
+
+export const Explain = styled.h3`
+
 `
 
 export const MySteps= styled(Steps)`
