@@ -5,48 +5,60 @@ export const All =styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-image: url("/noise.png");
-    background-color: #FAF0E6;
+    background-color: #EEF3FF;
 `
 
 export const Div1 = styled.div`
-    height: 100vh;
+    height: 90vh;
     text-Align: 'center';
     background: 'red';
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 1500px;
-    margin-top: 4%;
-    margin-bottom: 6%;
+    justify-content: space-evenly;
+    width: 50vw;
+    margin-top: 2em;
 `
 
 export const Div11 = styled.div`
     background-color: white;
-    width: 1300px;
-    height: 80%;
+    width: 1000px;
+    height: 70%;
     display: flex;
     flex-direction: column;
     padding: 5%;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
-    border: 1px solid;
     justify-content: space-between;
+    border-radius: 35px;
+`
+
+export const Div1title = styled.div`
+    display: flex;
+    border: 1px solid;
+    height: 20%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+`
+
+export const DivContents = styled.div`
+
 `
 
 export const Div1_1 = styled.div`
-    border: 1px solid black;
-    height: 15%;
+    height: 8%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 5px 0;
 `
 
 export const Div1_2 = styled.div`
     border: 1px solid;
     width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 `
 export const Div6 = styled.div`
     border: 1px solid;
@@ -56,16 +68,9 @@ export const Div6 = styled.div`
     flex-direction: row;
     justify-content: space-between;
 `
-export const Div2 = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 5%;
-    border: 1px solid red;
-`
 
 export const Div3 = styled.div`
-    width: 1500px;
+    width: 150vw;
     height: auto;
     text-Align: 'center';
     background: '#FFFBE9';
@@ -110,31 +115,3 @@ export const Div3_3_1 = styled.div`
     width: 100%;
     padding: 1%;
 `
-
-export const Div3_3_2 = styled.div`
-    height: 100%;
-    border: 1px solid;
-    width: 45%;
-`
-
-export const Div4 = styled.div`
-    width: 1500px;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
-export const Div5 = styled.div`
-    display:flex;
-    flex-direction: row;
-    width: 1600px;
-    height: 80%;
-    padding: 5%;
-    justify-content: space-between;
-    /* border-radius: 100px; */
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 12px;
-    background-color: white;
-    width: 1300px;
-`
-
