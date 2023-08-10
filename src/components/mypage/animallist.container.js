@@ -1,14 +1,40 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import RegisterInduction from "./induction.container";
+import { Card } from "antd";
+const { Meta } = Card;
+
+import catImage from "../../../public/catcat.png"; //임시
 
 const END_URL = "http://localhost:8080/pet";
 
 // pet/{pet_id}로 통신하면 됨
 
+const AnimalsList = ({ data }) => {
+  return (
+    <Card
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        width: "70vw",
+        height: "20vh",
+      }}
+      hoverable
+      cover={<img alt="example" src={"../../../public/catcat.png"} />}
+    >
+      <Meta
+        title={<div style={{ fontSize: "1.8vh" }}>안냥 이름 넣을래</div>}
+        description={<div style={{ fontSize: "1.5vh" }}>안냥 설명 넣을랭</div>}
+      />
+      <div>여기 진단일자 넣을랭</div>
+      <div>여긴 품종 넣을랭</div>
+    </Card>
+  );
+};
+
 export default function AnimalListView({ selectedItem }) {
   const [petData, setPetData] = useState(null);
-  console.log("젤처음뭔데", selectedItem);
+  console.log("바뀌나 이래도??", selectedItem);
 
   useEffect(() => {
     if (selectedItem != "register") {
@@ -17,6 +43,7 @@ export default function AnimalListView({ selectedItem }) {
     }
   }, []);
 
+  // 통신 수행하는 부분
   const fetchPetData = async (petId) => {
     try {
       const config = {
@@ -48,9 +75,15 @@ export default function AnimalListView({ selectedItem }) {
           <RegisterInduction />
         </div>
       ) : (
-        <div>
-          {selectedItem}여기에 펫데이터 쓸거임 굳이 컴포넌트 안 만들고 여기 위에
-          const로 하자
+        <div
+          style={{
+            marginTop: "8vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <AnimalsList data={petData} />
         </div>
       )}
     </div>
