@@ -13,9 +13,19 @@ const MyIcon = styled(ReconciliationOutlined)`
   font-size: 30px;
 `
 
+const displayImageFromBase64 = (base64String) => {
+  const image = document.createElement('img');
+  image.src = `data:image/jpeg;base64,${base64String}`;
+  const imageElement = document.getElementById('result-image');
+  imageElement.appendChild(image);
+};
+
 export default function TestContainer() {
   const transData = useSelector((state) => {return state.isTrans}); // 리덕스 관련
   console.log(transData)
+  displayImageFromBase64(transData.imageBase64); // base64 디코딩해서 이미지로 출력
+
+
   
     return (
       <>
@@ -28,7 +38,7 @@ export default function TestContainer() {
             <Div11>
               <Div1title>{transData}(가)이 00% 확률로 의심됨. </Div1title>
                 <Div6>
-                  <Div1_2>back에서 받아온 결과 사진</Div1_2>
+                  <Div1_2><div id='result-image'>back에서 받아온 결과 사진</div></Div1_2>
                   <Div1_2>
                     <div>
                       <DivContents>{transData}</DivContents>
