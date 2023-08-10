@@ -18,6 +18,9 @@ export default function ShotGuidePage() {
     const [choosepet, setChoosepet] = useState()
     const [petname, setPetname] = useState()
     const [petspecies, setSpecies] = useState()
+    const [petbirthYear, setBirthYear] = useState()
+    const [petinfo, setInfo] = useState()
+    const [petprofile, setProfile] = useState()
 
     const description1 = '반려동물을 선택해주세요.';
     const description2 = '사진업로드시 주의사항';
@@ -52,6 +55,9 @@ export default function ShotGuidePage() {
         const petinfo = mypet.find((el) => el.petId === e)
         setPetname(petinfo.petName)
         setSpecies(petinfo.species)
+        setBirthYear(petinfo.birthYear)
+        setInfo(petinfo.info)
+        setProfile(petinfo.photoData)
     };
 
     const prevClick = () => {
@@ -120,6 +126,7 @@ export default function ShotGuidePage() {
                             onChange={handleChange}
                             options={options} />
                         )}
+                                <img src={`data:image/jpeg;base64,${petprofile}`} width="150px" height='150px'></img>
                     </MySpace>}
                     {num == 1&&
                         <MyImagediv>
