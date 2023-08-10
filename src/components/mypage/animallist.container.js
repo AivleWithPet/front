@@ -10,7 +10,7 @@ const END_URL = "http://localhost:8080/pet";
 
 // pet/{pet_id}로 통신하면 됨
 
-const AnimalsList = ({ petData }) => {
+const AnimalsList = ({ data }) => {
   return (
     <Card
       style={{
@@ -34,7 +34,7 @@ const AnimalsList = ({ petData }) => {
 
 export default function AnimalListView({ selectedItem }) {
   const [petData, setPetData] = useState(null);
-  console.log("젤처음뭔데", selectedItem);
+  console.log("바뀌나 이래도??", selectedItem);
 
   useEffect(() => {
     if (selectedItem != "register") {
@@ -83,7 +83,7 @@ export default function AnimalListView({ selectedItem }) {
             alignItems: "center",
           }}
         >
-          <AnimalsList />
+          <AnimalsList data={petData} />
         </div>
       )}
     </div>

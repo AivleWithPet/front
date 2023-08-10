@@ -1,13 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { Menu } from "antd";
 
-const Profile = ({ data }) => {
+const Profile = ({ number, petList }) => {
+  console.log("selectedPet 조회 시도", number, petList);
+  const selectedPet = petList.find((item) => item.petId == number);
+  console.log("selectedPet 찾음", selectedPet);
+  // const [profile, setProFile] = useState();
+
+  // useEffect(() => {
+  //   console.log("selectedPet 조회 시도", number, petList);
+  //   const selectedPet = petList.find((item) => item.petId === number);
+  //   setProFile(selectedPet);
+  //   console.log("selectedPet 찾음", selectedPet);
+  // }, [number]);
+
+  if (!selectedPet) {
+    return null; // data가 없으면 아무것도 렌더링하지 않음
+  }
   return (
-    <div>
-      <h2>{data.petName}</h2>
-      <p>종류: {data.species}</p>
-      <p>출생 연도: {data.birthYear}</p>
-      <p>추가 정보: {data.info}</p>
+    <div
+      style={{
+        textAlign: "right",
+        fontSize: "1.5vh",
+      }}
+    >
+      <h2>{selectedPet.petName}</h2>
+      <p>종류: {selectedPet.species}</p>
+      <p>출생 연도: {selectedPet.birthYear}</p>
+      <p>추가 정보: {selectedPet.info}</p>
     </div>
   );
 };
@@ -18,10 +38,7 @@ export default function SideBar({ petList, selectedItem, onItemClick }) {
       // petList가 있고 selectedItem이 null인 경우 첫 번째 항목을 선택 상태로 설정
       onItemClick(petList[0].petId);
     }
-  }, [petList, selectedItem, onItemClick]);
-
-  // petList에서 selectedItem과 일치하는 항목 찾기..근데 이거 selectedItem에 따라 안 바뀜..이유가 뭘까?
-  const selectedPet = petList.find((item) => item.petId === selectedItem);
+  }, [selectedItem, onItemClick]); //petList
 
   return (
     <Menu
@@ -59,7 +76,8 @@ export default function SideBar({ petList, selectedItem, onItemClick }) {
             backgroundColor: "#4A85DC",
           }}
         >
-          <Profile data={selectedPet} />
+          {/* <Profile data={profile} /> */}
+          <Profile number={selectedItem} petList={petList} />
         </div>
       )}
     </Menu>
