@@ -55,7 +55,10 @@ export default function MyAnimalPage() {
     <Layout style={{ height: "calc(100vh - 80px)", display: "flex" }}>
       <Sider
         width={300}
-        style={{ color: "white", boxShadow: "2px 2px 2px rgba(0, 0, 0, 0.1)" }}
+        style={{
+          backgroundColor: "#68A5FE",
+          boxShadow: "2px 2px 2px rgba(0, 0, 0, 0.1)",
+        }}
       >
         <SideBar
           petList={petList}
@@ -64,7 +67,7 @@ export default function MyAnimalPage() {
         />
       </Sider>
 
-      <Layout style={{ padding: "0 24px 24px", backgroundColor: "gray" }}>
+      <Layout style={{ padding: "0 24px 24px", backgroundColor: "#EEF3FF" }}>
         <Content>
           <AnimalListView selectedItem={selectedItem} />
         </Content>

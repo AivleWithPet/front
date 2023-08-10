@@ -17,6 +17,7 @@ export default function SideBar({ petList, selectedItem, onItemClick }) {
       ]}
       selectedKeys={[selectedItem]}
       onClick={({ key }) => onItemClick(key)}
+      style={{ backgroundColor: "#68A5FE" }}
     >
       {petList.length > 0 ? (
         petList.map((item) => (
