@@ -113,7 +113,7 @@ export default function ShotGuidePage() {
                                 <Card
                                     hoverable
                                     style={{width: 300}}
-                                    cover={<img src='/1.jpg' width="250px" height='250px'></img>}
+                                    cover={<img src={`data:image/jpeg;base64,${petprofile}`} width="250px" height='250px'></img>}
                                     >
                                     <Meta 
                                         title={petname}
@@ -126,7 +126,6 @@ export default function ShotGuidePage() {
                             onChange={handleChange}
                             options={options} />
                         )}
-                                <img src={`data:image/jpeg;base64,${petprofile}`} width="150px" height='150px'></img>
                     </MySpace>}
                     {num == 1&&
                         <MyImagediv>
