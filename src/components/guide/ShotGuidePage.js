@@ -18,6 +18,9 @@ export default function ShotGuidePage() {
     const [choosepet, setChoosepet] = useState()
     const [petname, setPetname] = useState()
     const [petspecies, setSpecies] = useState()
+    const [petbirthYear, setBirthYear] = useState()
+    const [petinfo, setInfo] = useState()
+    const [petprofile, setProfile] = useState()
 
     const description1 = '반려동물을 선택해주세요.';
     const description2 = '사진업로드시 주의사항';
@@ -52,6 +55,9 @@ export default function ShotGuidePage() {
         const petinfo = mypet.find((el) => el.petId === e)
         setPetname(petinfo.petName)
         setSpecies(petinfo.species)
+        setBirthYear(petinfo.birthYear)
+        setInfo(petinfo.info)
+        setProfile(petinfo.photoData)
     };
 
     const prevClick = () => {
@@ -107,7 +113,7 @@ export default function ShotGuidePage() {
                                 <Card
                                     hoverable
                                     style={{width: 300}}
-                                    cover={<img src='/1.jpg' width="250px" height='250px'></img>}
+                                    cover={<img src={`data:image/jpeg;base64,${petprofile}`} width="250px" height='250px'></img>}
                                     >
                                     <Meta 
                                         title={petname}
