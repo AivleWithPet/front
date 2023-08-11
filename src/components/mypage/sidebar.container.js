@@ -5,14 +5,6 @@ const Profile = ({ number, petList }) => {
   console.log("selectedPet 조회 시도", number, petList);
   const selectedPet = petList.find((item) => item.petId == number);
   console.log("selectedPet 찾음", selectedPet);
-  // const [profile, setProFile] = useState();
-
-  // useEffect(() => {
-  //   console.log("selectedPet 조회 시도", number, petList);
-  //   const selectedPet = petList.find((item) => item.petId === number);
-  //   setProFile(selectedPet);
-  //   console.log("selectedPet 찾음", selectedPet);
-  // }, [number]);
 
   if (!selectedPet) {
     return null; // data가 없으면 아무것도 렌더링하지 않음

@@ -34,7 +34,6 @@ const AnimalsList = ({ data }) => {
 
 export default function AnimalListView({ selectedItem }) {
   const [petData, setPetData] = useState(null);
-  console.log("바뀌나 이래도??", selectedItem);
 
   useEffect(() => {
     if (selectedItem != "register") {

@@ -60,6 +60,7 @@ export default function RegisterFB({ page }) {
         console.log("데이터 전송 성공", response.data);
         message.success("등록이 완료되었습니다."); // 성공 메시지 보여주기
         setImg([]);
+        // 여기 새로고침 안되는 문제확인
         router.push("/mypage");
       } else {
         console.log("데이터 전송 실패", response.status);
