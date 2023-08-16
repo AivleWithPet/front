@@ -9,6 +9,7 @@ export const HList = styled.div`
     padding: 3%;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0); 
     transition: box-shadow 0.5s;
+    margin-right: 2%;
   }
 
   div:hover {

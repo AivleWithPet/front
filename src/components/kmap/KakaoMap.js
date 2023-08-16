@@ -252,9 +252,9 @@ export default function KakaoMap(props) {
 
 
   return (
-    <div className="map_wrap" style={{ width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
+    <div className="map_wrap" style={{ width:'90%', display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
       
-      <div id="map" style={{ width: "50%"}}></div>
+      <div id="map" style={{ width: "50%", border:'1px', borderRadius:'35px'}}></div>
       <div id="menu_wrap" className="bg_white" style={{border:'0px solid white'}}>
         <div className="option">
           <div style={{display:'none'}}>
@@ -267,7 +267,7 @@ export default function KakaoMap(props) {
         </div>
         
         
-        <div style={{overflow:'auto', width: '38em', height: '36em', display:'flex', flexDirection:'column', justifyContent:'space-evenly'}}>
+        <div style={{overflow:'auto', width: '38em', height: '36em', display:'flex', flexDirection:'column', justifyContent:'space-evenly', border:'1px solid', borderRadius:'35px 0px 0px 35px', padding: "0 5%"}}>
           <HList>
             <ul id="placesList" style={{listStyle:'none'}}></ul>
           </HList>
