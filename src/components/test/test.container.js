@@ -14,10 +14,10 @@ const MyIcon = styled(ReconciliationOutlined)`
 `
 
 const displayImageFromBase64 = (base64String) => {
-  const image = document.createElement('img');
-  image.src = `data:image/jpeg;base64,${base64String}`;
-  const imageElement = document.getElementById('result-image');
-  imageElement.appendChild(image);
+  // const image = document.createElement('img');
+  // image.src = `data:image/jpeg;base64,${base64String}`;
+  // const imageElement = document.getElementById('result-image');
+  // imageElement.appendChild(image);
 };
 
 export default function TestContainer() {
@@ -54,8 +54,6 @@ export default function TestContainer() {
           </Div1>
           <Div3>
               <Div3_1>
-                  <Div3_2>
-                  </Div3_2>
                   <Div3_3>
                       <Div3_3_1>
                         <KakaoMap isMap={true} />
