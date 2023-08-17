@@ -42,8 +42,10 @@ export default function MyAnimalPage() {
       if (response.status === 200) {
         console.log("데이터 전송 성공", response.data);
         setPetList(response.data); // 서버에서 받아온 반려동물 data
-        // 위의 state에서 사실상 초기값이 결정되니 굳이 필요없음
-        //setSelectedItem(response.data.length > 0 ? response.data[0].petId : 1); // 기본 선택
+        // 위의 state에서 사실상 초기값이 결정되니 굳이 필요없음..필요하다 바보야 register용 생각 안하나
+        if (response.data.length < 1) {
+          setSelectedItem("register");
+        }
       } else {
         console.log("데이터 전송 실패", response.status);
       }
