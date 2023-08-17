@@ -21,7 +21,7 @@ export default function RegisterFB({ page }) {
       사랑하는 반려동물을 등록할 때 필요한 정보입니다.
       <br />
       반려동물의 이름, 나이, 태어난 해는 필수적인 정보입니다. <br />
-      사진을 등록하지 않는다면 기본 이미지로 등록됩니다.
+      비고란은 부가적인 소개글로 한 문장으로 작성해주세요.
     </div>
   );
 
@@ -48,7 +48,6 @@ export default function RegisterFB({ page }) {
       formData.append("info", fieldsValue.info); // info인데 필수는 아님...
       formData.append("accessToken", localStorage.getItem("accessToken")); // 액세스 토큰 추가
 
-      // 실제 전송부...인데 원래 formData가 아니라 여기 headers에 엑세스 토큰이 따로 드가야되지않음?? 그래서 일단 두개 다 줌!
       const response = await axios.post(END_URL, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -60,14 +59,10 @@ export default function RegisterFB({ page }) {
         console.log("데이터 전송 성공", response.data);
         message.success("등록이 완료되었습니다."); // 성공 메시지 보여주기
         setImg([]);
-        // 여기 새로고침 안되는 문제확인
-        router.push("/mypage");
+        router.reload();
       } else {
         console.log("데이터 전송 실패", response.status);
       }
-      // 전송 완료 후 선택된 파일 초기화 &  새로고침
-      // setImg([]);
-      // router.push("/mypage");
     } catch (error) {
       setImg([]);
       console.error("업로드 중 오류가 발생했습니다.", error);
