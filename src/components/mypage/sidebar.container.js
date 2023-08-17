@@ -9,20 +9,26 @@ const Profile = ({ number, petList }) => {
   }
   return (
     // 그리드 컨테이너의 역할 수행
+
     <div
       style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
+        alignItems: "center",
+        width: "300px",
+        height: "15vh",
+        backgroundColor: "#4A85DC",
       }}
     >
       <div>
         <img
-          src={selectedPet.photoData}
+          src={`data:image/png;base64,${selectedPet.photoData}`}
           style={{
             gridColumn: 1,
+            marginLeft: 20,
             textAlign: "left",
-            height: "40px",
-            width: "40px",
+            height: "68px",
+            width: "68px",
             borderRadius: "50%",
           }}
         />
@@ -30,11 +36,13 @@ const Profile = ({ number, petList }) => {
       <div
         style={{
           gridColumn: 2,
+          marginRight: 20,
+          marginTop: 20,
           textAlign: "right",
-          fontSize: "1.5vh",
+          fontSize: "1.8vh",
         }}
       >
-        <h2>{selectedPet.petName}</h2>
+        <p style={{ fontSize: "3vh" }}>{selectedPet.petName}</p>
         <p>종류: {selectedPet.species}</p>
         <p>출생 연도: {selectedPet.birthYear}</p>
         <p>추가 정보: {selectedPet.info}</p>
@@ -82,9 +90,6 @@ export default function SideBar({ petList, selectedItem, onItemClick }) {
           style={{
             position: "absolute",
             bottom: "0",
-            width: "300px",
-            height: "12vh",
-            backgroundColor: "#4A85DC",
           }}
         >
           <Profile number={selectedItem} petList={petList} />

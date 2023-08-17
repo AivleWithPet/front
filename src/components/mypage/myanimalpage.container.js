@@ -53,7 +53,7 @@ export default function MyAnimalPage() {
 
   return (
     // 이거 왜 영역 높이 안 맞음????
-    <Layout style={{ height: "calc(100vh - 82.4px)", display: "flex" }}>
+    <Layout style={{ height: "calc(100vh - 80px)", display: "flex" }}>
       <Sider
         width={300}
         style={{
