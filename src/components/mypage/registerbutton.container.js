@@ -59,12 +59,15 @@ export default function RegisterFB({ page }) {
         console.log("데이터 전송 성공", response.data);
         message.success("등록이 완료되었습니다."); // 성공 메시지 보여주기
         setImg([]);
+        router.push("/mypage");
         router.reload();
       } else {
         console.log("데이터 전송 실패", response.status);
       }
     } catch (error) {
       setImg([]);
+      router.push("/mypage");
+      router.reload();
       console.error("업로드 중 오류가 발생했습니다.", error);
     }
   };
