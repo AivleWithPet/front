@@ -53,7 +53,10 @@ export default function AnimalListView({ selectedItem }) {
         withCredentials: true,
       };
 
-      const response = await axios.get(`${END_URL}/${petId}`, config);
+      const response = await axios.get(
+        `${END_URL}/results?petId=${petId}`,
+        config
+      );
 
       if (response.status === 200) {
         console.log("반려동물 데이터 가져오기 성공", response.data);
