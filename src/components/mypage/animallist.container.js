@@ -73,7 +73,14 @@ export default function AnimalListView({ selectedItem }) {
   return (
     <div>
       {selectedItem === "register" ? (
-        <div>
+        <div
+          style={{
+            marginTop: "8vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <RegisterInduction />
         </div>
       ) : (
