@@ -72,7 +72,7 @@ export default function MyAnimalPage() {
 
       <Layout style={{ padding: "0 24px 24px", backgroundColor: "#EEF3FF" }}>
         <Content>
-          <AnimalListView selectedItem={selectedItem} />
+          <AnimalListView petList={petList} selectedItem={selectedItem} />
         </Content>
         <RegisterFB page={"mypage"} />
       </Layout>
