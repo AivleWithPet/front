@@ -6,6 +6,8 @@ export const All =styled.div`
     justify-content: space-between;
     align-items: center;
     background-color: #EEF3FF;
+    min-width: 1690.67px;
+    min-height: 1837px;
 `
 
 export const Div1 = styled.div`
@@ -18,6 +20,8 @@ export const Div1 = styled.div`
     justify-content: space-evenly;
     width: 50vw;
     margin-top: 2em;
+    min-width: 853.67px;
+    min-height: 855px;
 `
 
 export const Div11 = styled.div`
@@ -31,6 +35,8 @@ export const Div11 = styled.div`
     justify-content: space-between;
     border-radius: 35px;
     margin-bottom: 9%;
+    min-width: 1000px;
+    min-height: 598.5px;
 `
 
 export const Div1title = styled.div`
@@ -42,7 +48,7 @@ export const Div1title = styled.div`
     align-items: center;
 `
 
-export const DivContents = styled.div`
+export const DivContents = styled.span`
 
 `
 
@@ -55,13 +61,24 @@ export const Div1_1 = styled.div`
     margin: 5% 0;
 `
 
+export const ImageDiv= styled.div`
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`
+
 export const Div1_2 = styled.div`
     border: 1px solid;
     width: 45%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
 `
+export const DiseaseContent = styled.div`
+    margin-bottom: 35%;
+`
+
 export const Div6 = styled.div`
     border: 1px solid;
     display: flex;
@@ -84,8 +101,8 @@ export const Div3_1 = styled.div`
     background-size: 100vw 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
     padding-bottom: 60px;
     /* border-radius: 100px; */
     padding: 5%;
@@ -98,20 +115,4 @@ export const Div3_2 = styled.div`
     width: 100%;
     height: 10%;
     text-align: center;
-`
-
-export const Div3_3 = styled.div`
-    display:flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-`
-
-export const Div3_3_1 = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    padding: 1%;
 `
