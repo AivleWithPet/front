@@ -25,27 +25,30 @@ const Profile = ({ number, petList }) => {
           src={`data:image/png;base64,${selectedPet.photoData}`}
           style={{
             gridColumn: 1,
-            marginLeft: 20,
+            marginLeft: 30,
             textAlign: "left",
             height: "68px",
             width: "68px",
             borderRadius: "50%",
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.2)",
           }}
         />
       </div>
       <div
         style={{
           gridColumn: 2,
-          marginRight: 20,
+          marginRight: 30,
           marginTop: 20,
           textAlign: "right",
           fontSize: "1.8vh",
         }}
       >
-        <p style={{ fontSize: "3vh" }}>{selectedPet.petName}</p>
-        <p>종류: {selectedPet.species}</p>
-        <p>출생 연도: {selectedPet.birthYear}</p>
-        <p>추가 정보: {selectedPet.info}</p>
+        <p style={{ fontSize: "2.4vh" }}>
+          {selectedPet.petName}
+          {` (${selectedPet.birthYear})`}
+        </p>
+        <p style={{ marginTop: 30 }}>{selectedPet.species}</p>
+        <p style={{ marginTop: 10 }}>{selectedPet.info}</p>
       </div>
     </div>
   );
@@ -67,20 +70,84 @@ export default function SideBar({ petList, selectedItem, onItemClick }) {
       ]}
       selectedKeys={[selectedItem]}
       onClick={({ key }) => onItemClick(key)}
-      style={{ backgroundColor: "#68A5FE" }}
+      style={{
+        backgroundColor: "#68A5FE",
+      }}
     >
       {petList.length > 0 ? (
         petList.map((item) => (
           <Menu.Item
             key={item.petId}
             style={{
-              textAlign: "right",
-              height: "8vh",
-              fontSize: "1.8vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              height: "11vh",
+              fontSize: "2vh",
+              padding: 0,
+              margin: 4,
             }}
           >
-            {item.petName}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                height: "11vh",
+              }}
+            >
+              <img
+                src={`data:image/png;base64,${item.photoData}`}
+                style={{
+                  marginLeft: 30,
+                  height: "48px",
+                  width: "48px",
+                  borderRadius: "50%",
+                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.2)",
+                }}
+              />
+              <div style={{ marginLeft: "18vw" }}>{item.petName}</div>
+            </div>
           </Menu.Item>
+
+          // <Menu.Item
+          //   key={item.petId}
+          //   style={{
+          //     display: "grid",
+          //     gridTemplateColumns: "1fr 1fr",
+          //     alignItems: "center",
+          //     height: "10vh",
+          //     fontSize: "1.8vh",
+          //     padding: 0,
+          //     margin: 4,
+          //   }}
+          // >
+          //   <div
+          //     style={{
+          //       gridColumn: 1,
+          //       marginLeft: 30,
+          //       textAlign: "left",
+          //     }}
+          //   >
+          //     <img
+          //       src={`data:image/png;base64,${item.photoData}`}
+          //       style={{
+          //         height: "48px",
+          //         width: "48px",
+          //         borderRadius: "50%",
+          //         boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.2)",
+          //       }}
+          //     />
+          //   </div>
+          //   <div
+          //     style={{
+          //       gridColumn: 2,
+          //       marginRight: 30,
+          //       textAlign: "right",
+          //     }}
+          //   >
+          //     {item.petName}
+          //   </div>
+          // </Menu.Item>
         ))
       ) : (
         <Menu.Item key="register">서비스가 처음이신가요?</Menu.Item>
