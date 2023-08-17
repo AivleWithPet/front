@@ -11,11 +11,13 @@ export default function RegisterInduction() {
   return (
     <>
       <Steps
-        size="large"
         current={current}
         onChange={onChange}
         direction="vertical"
-        style={{ margin: "120px 240px" }}
+        style={{
+          margin: "100px 200px 100px 300px",
+          height: "50vh",
+        }}
         items={[
           {
             title: "Step 1",
