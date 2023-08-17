@@ -14,6 +14,7 @@ import {setIsTrans, setIsPetname} from '../../commons/store/store.js'
 export default function ImageUpload(props) {
     const [fileList, setFileList] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible2, setModalVisible2] = useState(false);
     const [token, setToken] = useState();
     const transData = useSelector((state) => {return state.isTrans}); // 리덕스 관련
     const dispatch = useDispatch();
@@ -51,6 +52,7 @@ export default function ImageUpload(props) {
           }
 
         try {
+            setModalVisible2(true);
             const response = await axios.post('http://localhost:8000/pet/result', formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
@@ -69,6 +71,10 @@ export default function ImageUpload(props) {
     // 모달 창 ok 누르면 꺼지는 함수
     const handleModalOk = () => {
         setModalVisible(false);
+    }
+
+    const handleModalOk2 = () => {
+        setModalVisible2(false);
     }
 
     // 이미지 삭제 함수
@@ -119,6 +125,21 @@ export default function ImageUpload(props) {
                     cancelButtonProps={{ style: { display: 'none' } }}
                 >
                     <p>사진을 첨부하지 않으면 AI 진단이 불가능합니다.</p>
+                </Modal>
+                <Modal
+                    open={modalVisible2}
+                    cancelButtonProps={{ style: { display: 'none' } }}
+                    okButtonProps={{style: {display: 'none'}}}
+                    closeIcon={' '}
+                    centered
+                    width={400}
+                    style={{ textAlign:'center' }}
+                >
+                    <div style={{margin: '100px', height: '100px', display: 'flex', flexDirection:'column', justifyContent:'space-between', alignItems:'center'}}>
+                        <img src='/img/295.gif' width={50} height={50} style={{marginBottom: '70px'}}/>
+                        <p>AI가 진단 중입니다... <br/>잠시만 기다려주세요</p>
+                    </div>
+
                 </Modal>
             </ImgUploadContainer>
         </>

@@ -41,11 +41,12 @@ export const Div11 = styled.div`
 
 export const Div1title = styled.div`
     display: flex;
-    border: 1px solid;
     height: 20%;
     text-align: center;
     justify-content: center;
     align-items: center;
+    font-size: large;
+    border-bottom: 2px solid;
 `
 
 export const DivContents = styled.span`
@@ -70,7 +71,6 @@ export const ImageDiv= styled.div`
 `
 
 export const Div1_2 = styled.div`
-    border: 1px solid;
     width: 45%;
     display: flex;
     flex-direction: column;
@@ -80,7 +80,6 @@ export const DiseaseContent = styled.div`
 `
 
 export const Div6 = styled.div`
-    border: 1px solid;
     display: flex;
     flex-direction: row;
     height: 70%;
@@ -110,7 +109,6 @@ export const Div3_1 = styled.div`
 `
 
 export const Div3_2 = styled.div`
-    border: 1px solid;
     margin-top: 50px;
     width: 100%;
     height: 10%;

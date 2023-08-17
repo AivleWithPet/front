@@ -34,21 +34,20 @@ export default function TestContainer() {
                <h2>{petName}의 AI 진단 체크 결과</h2>
             </Div1_1>
             <Div11>
-              <Div1title>{transData.diseaseName}(가)이 {parseFloat(transData.percentage).toFixed(2)}% 확률로 의심됨. </Div1title>
+              <Div1title><h3>{transData.diseaseName}(가)이 {parseFloat(transData.percentage).toFixed(2)}% 확률로 의심됩니다. </h3></Div1title>
                 <Div6>
                   <ImageDiv><img 
                     src={`data:image/jpeg;base64,${transData.imageBase64}`}
                     width= '100%'
                     height= '100%'
-                    style={{border:'1px solid'}}
                     /></ImageDiv>
                   <Div1_2>
                     <DiseaseContent>
-                      <DivContents><h3>병에 대한 설명</h3></DivContents>
+                      <DivContents><h3>{transData.diseaseName} 이란?</h3></DivContents>
                       <DivContents>{transData.inform}</DivContents>
                     </DiseaseContent>
                     <DiseaseContent>
-                      <DivContents><h3>좋은 음식</h3></DivContents>
+                      <DivContents><h3>추천 음식</h3></DivContents>
                       <DivContents>{transData.supplements}</DivContents>
                     </DiseaseContent>
                   </Div1_2> 
