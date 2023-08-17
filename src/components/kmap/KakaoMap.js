@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { HList, HListPage } from './map.style';
+import { HList, HListPage, ListPage } from './map.style';
 
 
 export default function KakaoMap(props) {
@@ -267,13 +267,11 @@ export default function KakaoMap(props) {
         </div>
         
         
-        <div style={{overflow:'auto', width: '38em', height: '36em', display:'flex', flexDirection:'column', justifyContent:'space-evenly', border:'1px solid', borderRadius:'35px 0px 0px 35px', padding: "0 5%"}}>
+        <div style={{overflow:'auto', width: '38em', height: '36em', display:'flex', flexDirection:'column',border:'1px solid', borderRadius:'35px 0px 0px 35px', padding: "0 5%"}}>
           <HList>
             <ul id="placesList" style={{listStyle:'none'}}></ul>
+            <HListPage id="pagination"></HListPage>
           </HList>
-          <HListPage>
-            <div id="pagination" style={{textAlign:'center', display:'none'}}></div>
-          </HListPage>
         </div>
       </div>
     </div>

@@ -26,8 +26,9 @@ export default function ShotGuidePage() {
     const description2 = '사진업로드시 주의사항';
     const description3 = '사진 제출하기';
     useEffect(() => {
-        const token = localStorage?.getItem("accessToekn")
+        const token = localStorage?.getItem("accessToken")
         const member_id = localStorage?.getItem("memberId")
+        console.log(token)
         const petData = async () => {
             const result = await axios.get(END_URL,{ 
                 params: {memberId: member_id},
@@ -41,7 +42,7 @@ export default function ShotGuidePage() {
             setMypet(result.data)
         }
         petData()
-        console.log(mypet)
+        // console.log(mypet)
     }, [])
 
     const options = mypet?.map(el => ({
@@ -82,7 +83,7 @@ export default function ShotGuidePage() {
     return (
         <>
             <GuidePageContainer>
-                <Global styles={MainFontStyles} ></Global>
+                <Global styles={MainFontStyles} />
                 <Textdiv>
                     <Title>
                         <h2>촬영 가이드</h2>
@@ -137,7 +138,7 @@ export default function ShotGuidePage() {
                                 <Caution>2. 사진이 흔들리지 않게 주의해주세요!</Caution>
                                 <img src="/caution/cats2.png" width="300px"/>
                             </Image1>                            <Image1>
-                                <Caution>3. 여러마리가 아닌 한 마리만 찍어주세요!</Caution>
+                                <Caution>3. 한 마리만 찍어주세요!</Caution>
                                 <img src="/caution/cats3.png" width="300px" style={{paddingBottom:"40px"}}/>
                             </Image1>
                         </MyImagediv>}
@@ -146,6 +147,7 @@ export default function ShotGuidePage() {
                             <ImageUpload 
                                 prevClick={prevClick}
                                 choosepet={choosepet}
+                                petname = {petname}
                                 setNum={setNum}
                             />
                         </Uploaddiv>}
