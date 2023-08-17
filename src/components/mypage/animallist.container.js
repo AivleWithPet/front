@@ -4,7 +4,6 @@ import RegisterInduction from "./induction.container";
 import { Card } from "antd";
 const { Meta } = Card;
 
-import catImage from "../../../public/catcat.png"; //임시
 
 const END_URL = "http://localhost:8080/pet";
 
@@ -20,7 +19,7 @@ const AnimalsList = ({ data, selectePetName, selectePetSpecies }) => {
         height: "20vh",
       }}
       hoverable
-      cover={<img alt="example" src={"../../../public/catcat.png"} />}
+      cover={<img alt="example" src={""} />}
     >
       <Meta
         title={<div style={{ fontSize: "1.8vh" }}>{selectePetName}</div>}
@@ -89,7 +88,7 @@ export default function AnimalListView({ petList, selectedItem }) {
         >
           <RegisterInduction />
         </div>
-      ) : (
+      ) : petData.length > 0 ? (
         <div
           style={{
             marginTop: "8vh",
@@ -103,6 +102,20 @@ export default function AnimalListView({ petList, selectedItem }) {
             selectePetName={selectePetName}
             selectePetSpecies={selectePetSpecies}
           />
+        </div>
+      ) : (
+        <div
+          style={{
+            marginTop: "8vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: "5vh",
+          }}
+        >
+          진단 내역이 없습니다!
+          <br />
+          먼저 AI를 통한 질병 진단을 해주세요!
         </div>
       )}
     </div>

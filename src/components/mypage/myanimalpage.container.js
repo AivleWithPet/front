@@ -14,7 +14,6 @@ export default function MyAnimalPage() {
   const [petList, setPetList] = useState([]);
   const [selectedItem, setSelectedItem] = useState(1);
   // 여기가 초기값 설정 파트라 여기 null을 줬더니 처음도 null이 되는 문제가 발생 했었음
-  console.log("아이디 왜 안나와", selectedItem);
 
   const handleSideBarItemClick = (key) => {
     setSelectedItem(key);
