@@ -16,9 +16,18 @@ const isLogin = createSlice({
     }
 })
 
+const initialState = {
+    createdAt: "",
+    diseaseName: "",
+    imageBase64: "",
+    inform: "",
+    percentage: 0,
+    supplements: ""
+  };
+
 const isTrans = createSlice({
     name : 'isTrans',
-    initialState : '이미지 전송 성공 초기값',
+    initialState : initialState,
 
     reducers : {
         setIsTrans(state, action) {
@@ -27,14 +36,27 @@ const isTrans = createSlice({
     }
 })
 
+const isPetname = createSlice({
+    name : 'isPetname',
+    initialState : '강아지 이름',
+
+    reducers : {
+        setIsPetname(state, action) {
+            return action.payload
+        }
+    }
+})
+
 // 수정 함수 export
 export const { setIsLoginTrue, setIsLoginFalse } = isLogin.actions
 export const {setIsTrans} = isTrans.actions
+export const {setIsPetname} = isPetname.actions
 
 // store : state를 보관
 export default configureStore({
     reducer: {
         isLogin : isLogin.reducer,
-        isTrans : isTrans.reducer
+        isTrans : isTrans.reducer,
+        isPetname : isPetname.reducer
     }
 })

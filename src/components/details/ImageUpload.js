@@ -9,7 +9,7 @@ import { ButtonDiv } from '../guide/guide_emotion';
 import { useRouter } from 'next/router';
 import FormData from 'form-data';
 import { useDispatch, useSelector } from 'react-redux'; // 리덕스 관련
-import {setIsTrans} from '../../commons/store/store.js'
+import {setIsTrans, setIsPetname} from '../../commons/store/store.js'
 
 export default function ImageUpload(props) {
     const [fileList, setFileList] = useState([]);
@@ -60,7 +60,7 @@ export default function ImageUpload(props) {
             });
             console.log('이미지 전송 성공', response.data);
             dispatch(setIsTrans(response.data.result));
-            console.log(transData);
+            dispatch(setIsPetname(props.petname));
             router.push(`${router.asPath}/test`);
         } catch (event) {
             console.error('이미지 전송 실패', event)
