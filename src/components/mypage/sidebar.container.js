@@ -2,24 +2,43 @@ import React, { useState, useEffect } from "react";
 import { Menu } from "antd";
 
 const Profile = ({ number, petList }) => {
-  console.log("selectedPet 조회 시도", number, petList);
   const selectedPet = petList.find((item) => item.petId == number);
-  console.log("selectedPet 찾음", selectedPet);
 
   if (!selectedPet) {
     return null; // data가 없으면 아무것도 렌더링하지 않음
   }
   return (
+    // 그리드 컨테이너의 역할 수행
     <div
       style={{
-        textAlign: "right",
-        fontSize: "1.5vh",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
       }}
     >
-      <h2>{selectedPet.petName}</h2>
-      <p>종류: {selectedPet.species}</p>
-      <p>출생 연도: {selectedPet.birthYear}</p>
-      <p>추가 정보: {selectedPet.info}</p>
+      <div>
+        <img
+          src={selectedPet.photoData}
+          style={{
+            gridColumn: 1,
+            textAlign: "left",
+            height: "40px",
+            width: "40px",
+            borderRadius: "50%",
+          }}
+        />
+      </div>
+      <div
+        style={{
+          gridColumn: 2,
+          textAlign: "right",
+          fontSize: "1.5vh",
+        }}
+      >
+        <h2>{selectedPet.petName}</h2>
+        <p>종류: {selectedPet.species}</p>
+        <p>출생 연도: {selectedPet.birthYear}</p>
+        <p>추가 정보: {selectedPet.info}</p>
+      </div>
     </div>
   );
 };
@@ -68,7 +87,6 @@ export default function SideBar({ petList, selectedItem, onItemClick }) {
             backgroundColor: "#4A85DC",
           }}
         >
-          {/* <Profile data={profile} /> */}
           <Profile number={selectedItem} petList={petList} />
         </div>
       )}
