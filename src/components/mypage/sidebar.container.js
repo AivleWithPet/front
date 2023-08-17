@@ -105,49 +105,9 @@ export default function SideBar({ petList, selectedItem, onItemClick }) {
                   boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.2)",
                 }}
               />
-              <div style={{ marginLeft: "18vw" }}>{item.petName}</div>
+              <div style={{ marginLeft: 150 }}>{item.petName}</div>
             </div>
           </Menu.Item>
-
-          // <Menu.Item
-          //   key={item.petId}
-          //   style={{
-          //     display: "grid",
-          //     gridTemplateColumns: "1fr 1fr",
-          //     alignItems: "center",
-          //     height: "10vh",
-          //     fontSize: "1.8vh",
-          //     padding: 0,
-          //     margin: 4,
-          //   }}
-          // >
-          //   <div
-          //     style={{
-          //       gridColumn: 1,
-          //       marginLeft: 30,
-          //       textAlign: "left",
-          //     }}
-          //   >
-          //     <img
-          //       src={`data:image/png;base64,${item.photoData}`}
-          //       style={{
-          //         height: "48px",
-          //         width: "48px",
-          //         borderRadius: "50%",
-          //         boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.2)",
-          //       }}
-          //     />
-          //   </div>
-          //   <div
-          //     style={{
-          //       gridColumn: 2,
-          //       marginRight: 30,
-          //       textAlign: "right",
-          //     }}
-          //   >
-          //     {item.petName}
-          //   </div>
-          // </Menu.Item>
         ))
       ) : (
         <Menu.Item key="register">서비스가 처음이신가요?</Menu.Item>
