@@ -40,7 +40,7 @@ export default function AnimalListView({ selectedItem }) {
       // selectedPet이 register가 아닐 때에만 Axios 통신을 수행
       fetchPetData(selectedItem);
     }
-  }, []);
+  }, [selectedItem]);
 
   // 통신 수행하는 부분
   const fetchPetData = async (petId) => {
