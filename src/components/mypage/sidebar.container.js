@@ -110,7 +110,20 @@ export default function SideBar({ petList, selectedItem, onItemClick }) {
           </Menu.Item>
         ))
       ) : (
-        <Menu.Item key="register">서비스가 처음이신가요?</Menu.Item>
+        <Menu.Item
+          key="register"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textAlign: "center",
+            height: "11vh",
+            fontSize: "2vh",
+            padding: 0,
+            margin: 4,
+          }}
+        >
+          서비스가 처음이신가요?
+        </Menu.Item>
       )}
       {petList.length > 0 && (
         <div
