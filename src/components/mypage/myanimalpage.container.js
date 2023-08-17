@@ -12,7 +12,8 @@ const END_URL = "http://localhost:8080/pet/myPets";
 
 export default function MyAnimalPage() {
   const [petList, setPetList] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(1);
+  // 여기가 초기값 설정 파트라 여기 null을 줬더니 처음도 null이 되는 문제가 발생 했었음
 
   const handleSideBarItemClick = (key) => {
     setSelectedItem(key);
@@ -40,9 +41,10 @@ export default function MyAnimalPage() {
       if (response.status === 200) {
         console.log("데이터 전송 성공", response.data);
         setPetList(response.data); // 서버에서 받아온 반려동물 data
-        setSelectedItem(
-          response.data.length > 0 ? response.data[0].petId : null
-        ); // 기본 선택
+        // 위의 state에서 사실상 초기값이 결정되니 굳이 필요없음..필요하다 바보야 register용 생각 안하나
+        if (response.data.length < 1) {
+          setSelectedItem("register");
+        }
       } else {
         console.log("데이터 전송 실패", response.status);
       }
@@ -52,7 +54,6 @@ export default function MyAnimalPage() {
   };
 
   return (
-    // 이거 왜 영역 높이 안 맞음????
     <Layout style={{ height: "calc(100vh - 80px)", display: "flex" }}>
       <Sider
         width={300}
@@ -70,7 +71,7 @@ export default function MyAnimalPage() {
 
       <Layout style={{ padding: "0 24px 24px", backgroundColor: "#EEF3FF" }}>
         <Content>
-          <AnimalListView selectedItem={selectedItem} />
+          <AnimalListView petList={petList} selectedItem={selectedItem} />
         </Content>
         <RegisterFB page={"mypage"} />
       </Layout>
