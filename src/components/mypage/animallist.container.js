@@ -4,7 +4,6 @@ import RegisterInduction from "./induction.container";
 import { Card } from "antd";
 const { Meta } = Card;
 
-
 const END_URL = "http://localhost:8080/pet";
 
 // pet/{pet_id}로 통신하면 됨
@@ -32,18 +31,19 @@ const AnimalsList = ({ data, selectePetName, selectePetSpecies }) => {
 };
 
 export default function AnimalListView({ petList, selectedItem }) {
-  const [petData, setPetData] = useState(null);
+  const [petData, setPetData] = useState([]);
   const [selectePetName, setSelectePetName] = useState("");
   const [selectePetSpecies, setSelectePetSpecies] = useState("");
+  console.log("dkdkdk", petData);
 
   useEffect(() => {
     if (selectedItem != "register") {
       // selectedPet이 register가 아닐 때에만 Axios 통신을 수행
       fetchPetData(selectedItem);
       // 과거 진단 내역 리스트를 위함
-      const selectedPet = petList.find((item) => item.petId == selectedItem);
-      setSelectePetName(selectedPet.petName);
-      setSelectePetSpecies(selectedPet.species);
+      // const selectedPet = petList.find((item) => item.petId == selectedItem);
+      // setSelectePetName(selectedPet.petName);
+      // setSelectePetSpecies(selectedPet.species);
     }
   }, [selectedItem]);
 
