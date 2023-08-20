@@ -46,8 +46,10 @@ export default function NavBar() {
             ):(
               // 로그인 전
               <ul id='navbar' className={sideMenuState == true ? "#navbar active" : "#navbar"}>
-                <li><Link href="/login">Sign in</Link></li>
-                <li><Link href="/register">Sign up</Link></li>
+                {/* <li><Link href="/login">Sign in</Link></li>
+                <li><Link href="/register">Sign up</Link></li> */}
+                <li><Link href="/join">JOIN</Link></li>
+
               </ul>
             )}
 
