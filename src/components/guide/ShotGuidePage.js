@@ -109,37 +109,41 @@ export default function ShotGuidePage() {
                         ]}
                     />
                     {num == 0&&   
-                    <MySpace>
+                    <>
                         {petname?(
+                            <MySpace>
                                 <Card
                                     hoverable
-                                    style={{width: 300}}
-                                    cover={<img src={`data:image/jpeg;base64,${petprofile}`} width="250px" height='250px'></img>}
+                                    style={{width: '100%', height: '100%'}}
+                                    cover={<img src={`data:image/jpeg;base64,${petprofile}`} style={{width:'20vw', height:'30vh'}}></img>}
                                     >
                                     <Meta 
                                         title={petname}
                                         description={petspecies}
                                     />
                                 </Card>
+                            </MySpace>
                         ) : (
-                            <MySelect
-                            defaultValue="반려동물을 선택해주세요"
-                            onChange={handleChange}
-                            options={options} />
+                            <MySpace>
+                                <MySelect
+                                defaultValue="반려동물을 선택해주세요"
+                                onChange={handleChange}
+                                options={options} />
+                            </MySpace>
                         )}
-                    </MySpace>}
+                    </>}
                     {num == 1&&
                         <MyImagediv>
                             <Image1>
                                 <Caution>1. 정면을 응시한 채로 눈을 똑바로 뜬 상태로 찍어주세요!</Caution>
-                                <img src="/caution/cats1.png" width="300px"/>
+                                <img src="/caution/cats1.png" width="250em"/>
                             </Image1>
                             <Image1>
                                 <Caution>2. 사진이 흔들리지 않게 주의해주세요!</Caution>
-                                <img src="/caution/cats2.png" width="300px"/>
+                                <img src="/caution/cats2.png" width="250em"/>
                             </Image1>                            <Image1>
                                 <Caution>3. 한 마리만 찍어주세요!</Caution>
-                                <img src="/caution/cats3.png" width="300px" style={{paddingBottom:"40px"}}/>
+                                <img src="/caution/cats3.png" width="250em" style={{paddingBottom:"40px"}}/>
                             </Image1>
                         </MyImagediv>}
                     {num==2&&

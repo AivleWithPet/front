@@ -56,7 +56,7 @@ export default function TestContainer() {
           </Div1>
           <Div3>
               <Div3_1>
-                  <div style={{marginBottom:'4%'}}><h3>근처 병원</h3></div>
+                  <h3>근처 병원</h3>
                   <KakaoMap isMap={true} />
               </Div3_1>
           </Div3>
