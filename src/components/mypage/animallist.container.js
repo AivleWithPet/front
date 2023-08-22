@@ -8,7 +8,7 @@ const END_URL = "http://localhost:8080/pet";
 
 // pet/{pet_id}로 통신하면 됨
 
-const AnimalsList = ({ data, selectePetName, selectePetSpecies }) => {
+const AnimalsList = ({ data }) => {
   return (
     <Card
       style={{
@@ -18,32 +18,44 @@ const AnimalsList = ({ data, selectePetName, selectePetSpecies }) => {
         height: "20vh",
       }}
       hoverable
-      cover={<img alt="example" src={""} />}
+      cover={
+        <img
+          alt="example"
+          src={`data:image/png;base64,${data.imageBase64}`}
+          style={{
+            margin: "8 4 4 4",
+            width: "95%",
+            height: "95%",
+            objectFit: "cover", // 이미지 비율을 유지한 채로 채우도록 설정
+            borderRadius: "10%",
+          }}
+        />
+      }
     >
       <Meta
-        title={<div style={{ fontSize: "1.8vh" }}>{selectePetName}</div>}
-        description={<div style={{ fontSize: "1.5vh" }}>안냥 설명 넣을랭</div>}
+        title={<div style={{ fontSize: "1.8vh" }}>{data.diseaseName}</div>}
+        description={
+          <div style={{ fontSize: "1.5vh" }}>
+            {data.percentage.toFixed(2)}% 의 확률로 {data.diseaseName}이
+            의심됩니다.
+          </div>
+        }
       />
-      <div>여기 진단일자 넣을랭</div>
-      <div>{selectePetSpecies}</div>
+      <div style={{ fontSize: "1vh" }}>
+        진단 일자 : {data.createdAt.substring(0, 10)}
+      </div>
     </Card>
   );
 };
 
 export default function AnimalListView({ petList, selectedItem }) {
   const [petData, setPetData] = useState([]);
-  const [selectePetName, setSelectePetName] = useState("");
-  const [selectePetSpecies, setSelectePetSpecies] = useState("");
   console.log("dkdkdk", petData);
 
   useEffect(() => {
     if (selectedItem != "register") {
       // selectedPet이 register가 아닐 때에만 Axios 통신을 수행
       fetchPetData(selectedItem);
-      // 과거 진단 내역 리스트를 위함
-      // const selectedPet = petList.find((item) => item.petId == selectedItem);
-      // setSelectePetName(selectedPet.petName);
-      // setSelectePetSpecies(selectedPet.species);
     }
   }, [selectedItem]);
 
@@ -88,34 +100,31 @@ export default function AnimalListView({ petList, selectedItem }) {
         >
           <RegisterInduction />
         </div>
-      ) : petData.length > 0 ? (
-        <div
-          style={{
-            marginTop: "8vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <AnimalsList
-            data={petData}
-            selectePetName={selectePetName}
-            selectePetSpecies={selectePetSpecies}
-          />
-        </div>
       ) : (
         <div
           style={{
             marginTop: "8vh",
             display: "flex",
+            flexDirection: "column", // 세로로 나열되도록 변경
             justifyContent: "center",
             alignItems: "center",
-            fontSize: "5vh",
           }}
         >
-          진단 내역이 없습니다!
-          <br />
-          먼저 AI를 통한 질병 진단을 해주세요!
+          {petData.length > 0 ? (
+            petData.map((data, index) => (
+              <AnimalsList key={index} data={data} />
+            ))
+          ) : (
+            <div
+              style={{
+                fontSize: "5vh",
+              }}
+            >
+              진단 내역이 없습니다!
+              <br />
+              먼저 AI를 통한 질병 진단을 해주세요!
+            </div>
+          )}
         </div>
       )}
     </div>
