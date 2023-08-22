@@ -43,7 +43,7 @@ const Profile = ({ number, petList }) => {
           fontSize: "1.8vh",
         }}
       >
-        <p style={{ fontSize: "2.4vh" }}>
+        <p style={{ fontSize: "1.8vh" }}>
           {selectedPet.petName}
           {` (${selectedPet.birthYear})`}
         </p>

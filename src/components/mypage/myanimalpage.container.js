@@ -69,7 +69,7 @@ export default function MyAnimalPage() {
         />
       </Sider>
 
-      <Layout style={{ padding: "0 24px 24px", backgroundColor: "#EEF3FF" }}>
+      <Layout style={{ padding: "0 24px 24px", backgroundColor: "#EEF3FF", overflow:'auto' }}>
         <Content>
           <AnimalListView petList={petList} selectedItem={selectedItem} />
         </Content>
