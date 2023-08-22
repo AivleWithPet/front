@@ -42,8 +42,8 @@ export default function AnimalListView({ petList, selectedItem }) {
       fetchPetData(selectedItem);
       // 과거 진단 내역 리스트를 위함
       const selectedPet = petList.find((item) => item.petId == selectedItem);
-      setSelectePetName(selectedPet.petName);
-      setSelectePetSpecies(selectedPet.species);
+      setSelectePetName(selectedPet?.petName);
+      setSelectePetSpecies(selectedPet?.species);
     }
   }, [selectedItem]);
 
@@ -88,7 +88,7 @@ export default function AnimalListView({ petList, selectedItem }) {
         >
           <RegisterInduction />
         </div>
-      ) : petData.length > 0 ? (
+      ) : petData?.length > 0 ? (
         <div
           style={{
             marginTop: "8vh",

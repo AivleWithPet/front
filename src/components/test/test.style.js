@@ -101,9 +101,8 @@ export const Div3_1 = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     padding-bottom: 60px;
-    /* border-radius: 100px; */
     padding: 5%;
     width: 100%;
 `
