@@ -4,46 +4,71 @@ import RegisterInduction from "./induction.container";
 import { Card } from "antd";
 const { Meta } = Card;
 
-
 const END_URL = "http://localhost:8080/pet";
 
-// pet/{pet_id}로 통신하면 됨
-
-const AnimalsList = ({ data, selectePetName, selectePetSpecies }) => {
+const AnimalsList = ({ data }) => {
   return (
     <Card
       style={{
         display: "flex",
         flexDirection: "row",
-        width: "70vw",
-        height: "20vh",
+        width: "60vw",
+        height: "24vh",
       }}
       hoverable
-      cover={<img alt="example" src={""} />}
+      cover={
+        <img
+          alt="example"
+          src={`data:image/png;base64,${data.imageBase64}`}
+          style={{
+            marginTop: 5,
+            marginLeft: 5,
+            width: "15vw",
+            height: "95%",
+            objectFit: "cover", // 이미지 비율을 유지한 채로 채우도록 설정
+            borderRadius: "5%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        />
+      }
     >
       <Meta
-        title={<div style={{ fontSize: "1.8vh" }}>{selectePetName}</div>}
-        description={<div style={{ fontSize: "1.5vh" }}>안냥 설명 넣을랭</div>}
+        title={<div style={{ fontSize: "2.8vh" }}>{data.diseaseName}</div>}
+        description={
+          <div style={{ fontSize: "2vh" }}>
+            {data.percentage.toFixed(2)}% 의 확률로 {data.diseaseName}이
+            의심됩니다. <br />
+            {data.diseaseName}은 {data.inform}한 질환입니다.
+          </div>
+        }
       />
-      <div>여기 진단일자 넣을랭</div>
-      <div>{selectePetSpecies}</div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          height: "12vh",
+        }}
+      >
+        <div style={{ fontSize: "1.5vh" }}>
+          추천 영양제 : {data.supplements} <br />
+        </div>
+        <div style={{ fontSize: "1.5vh", marginLeft: "24vw" }}>
+          진단 일자 : {data.createdAt.substring(0, 10)}
+        </div>
+      </div>
     </Card>
   );
 };
 
 export default function AnimalListView({ petList, selectedItem }) {
-  const [petData, setPetData] = useState(null);
-  const [selectePetName, setSelectePetName] = useState("");
-  const [selectePetSpecies, setSelectePetSpecies] = useState("");
+  const [petData, setPetData] = useState([]);
+  console.log("dkdkdk", petData);
 
   useEffect(() => {
     if (selectedItem != "register") {
       // selectedPet이 register가 아닐 때에만 Axios 통신을 수행
       fetchPetData(selectedItem);
-      // 과거 진단 내역 리스트를 위함
-      const selectedPet = petList.find((item) => item.petId == selectedItem);
-      setSelectePetName(selectedPet.petName);
-      setSelectePetSpecies(selectedPet.species);
     }
   }, [selectedItem]);
 
@@ -88,34 +113,39 @@ export default function AnimalListView({ petList, selectedItem }) {
         >
           <RegisterInduction />
         </div>
-      ) : petData.length > 0 ? (
-        <div
-          style={{
-            marginTop: "8vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <AnimalsList
-            data={petData}
-            selectePetName={selectePetName}
-            selectePetSpecies={selectePetSpecies}
-          />
-        </div>
       ) : (
         <div
           style={{
             marginTop: "8vh",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            fontSize: "5vh",
           }}
         >
-          진단 내역이 없습니다!
-          <br />
-          먼저 AI를 통한 질병 진단을 해주세요!
+          {petData.length > 0 ? (
+            petData.map((data, index) => (
+              <div
+                key={index}
+                style={{ marginBottom: "16px" }} // 이 부분이 변경되었습니다.
+              >
+                <AnimalsList data={data} />
+              </div>
+            ))
+          ) : (
+            <div
+              style={{
+                fontSize: "5vh",
+                marginTop: "20vh",
+                textAlign: "center",
+              }}
+            >
+              진단 내역이 없습니다!
+              <br />
+              먼저 [진단하기]로 이동하여 <br />
+              AI를 통한 질병 진단을 해주세요!
+            </div>
+          )}
         </div>
       )}
     </div>
