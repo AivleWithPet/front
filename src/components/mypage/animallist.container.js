@@ -23,11 +23,14 @@ const AnimalsList = ({ data }) => {
           alt="example"
           src={`data:image/png;base64,${data.imageBase64}`}
           style={{
-            margin: "8 4 4 4",
-            width: "95%",
+            marginTop: 5,
+            marginLeft: 5,
+            width: "15vw",
             height: "95%",
             objectFit: "cover", // 이미지 비율을 유지한 채로 채우도록 설정
-            borderRadius: "10%",
+            borderRadius: "5%",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         />
       }
@@ -105,21 +108,22 @@ export default function AnimalListView({ petList, selectedItem }) {
           style={{
             marginTop: "8vh",
             display: "flex",
-            flexDirection: "column", // 세로로 나열되도록 변경
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
           {petData.length > 0 ? (
             petData.map((data, index) => (
-              <AnimalsList key={index} data={data} />
+              <div
+                key={index}
+                style={{ marginBottom: "16px" }} // 이 부분이 변경되었습니다.
+              >
+                <AnimalsList data={data} />
+              </div>
             ))
           ) : (
-            <div
-              style={{
-                fontSize: "5vh",
-              }}
-            >
+            <div style={{ fontSize: "5vh" }}>
               진단 내역이 없습니다!
               <br />
               먼저 AI를 통한 질병 진단을 해주세요!
