@@ -6,16 +6,14 @@ const { Meta } = Card;
 
 const END_URL = "http://localhost:8080/pet";
 
-// pet/{pet_id}로 통신하면 됨
-
 const AnimalsList = ({ data }) => {
   return (
     <Card
       style={{
         display: "flex",
         flexDirection: "row",
-        width: "70vw",
-        height: "20vh",
+        width: "60vw",
+        height: "24vh",
       }}
       hoverable
       cover={
@@ -36,16 +34,28 @@ const AnimalsList = ({ data }) => {
       }
     >
       <Meta
-        title={<div style={{ fontSize: "1.8vh" }}>{data.diseaseName}</div>}
+        title={<div style={{ fontSize: "2.8vh" }}>{data.diseaseName}</div>}
         description={
-          <div style={{ fontSize: "1.5vh" }}>
+          <div style={{ fontSize: "2vh" }}>
             {data.percentage.toFixed(2)}% 의 확률로 {data.diseaseName}이
-            의심됩니다.
+            의심됩니다. <br />
+            {data.diseaseName}은 {data.inform}한 질환입니다.
           </div>
         }
       />
-      <div style={{ fontSize: "1vh" }}>
-        진단 일자 : {data.createdAt.substring(0, 10)}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          height: "12vh",
+        }}
+      >
+        <div style={{ fontSize: "1.5vh" }}>
+          추천 영양제 : {data.supplements} <br />
+        </div>
+        <div style={{ fontSize: "1.5vh", marginLeft: "24vw" }}>
+          진단 일자 : {data.createdAt.substring(0, 10)}
+        </div>
       </div>
     </Card>
   );
@@ -123,10 +133,17 @@ export default function AnimalListView({ petList, selectedItem }) {
               </div>
             ))
           ) : (
-            <div style={{ fontSize: "5vh" }}>
+            <div
+              style={{
+                fontSize: "5vh",
+                marginTop: "20vh",
+                textAlign: "center",
+              }}
+            >
               진단 내역이 없습니다!
               <br />
-              먼저 AI를 통한 질병 진단을 해주세요!
+              먼저 [진단하기]로 이동하여 <br />
+              AI를 통한 질병 진단을 해주세요!
             </div>
           )}
         </div>
