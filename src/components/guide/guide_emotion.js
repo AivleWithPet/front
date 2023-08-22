@@ -10,6 +10,7 @@ export const GuidePageContainer = styled.div`
   align-items:center;
   text-align: center;
   height: calc(100vh - 80px);
+  width: 100vw;
   background-color: #EEF3FF;
 `
 export const Textdiv = styled.div`
@@ -18,20 +19,25 @@ export const Textdiv = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: white;
-  width: 60vw;
-  height: 38vw;
-  min-height: 729px;
-  min-width: 1152px;
+  width: 60%;
+  height: 80%;
   position: relative;
   border-radius: 35px;
 `
 
 export const Title = styled.div`
-  padding-top: 4em;
+  height: 5%;
+  padding: 3%;
 `
 
 export const Mycontents = styled.div`
-  padding-top: 1em;
+  height: 5%;
+  padding: 3%;
+`
+
+export const MySteps= styled(Steps)`
+  width: 80%;
+  padding: 3%;
 `
 
 export const MyImagediv = styled.div`
@@ -196,9 +202,11 @@ export const MySpace = styled(Space)`
   display: flex;
   flex-direction: column;
   margin-top: 3em;
-  height: 25vh;
+  height: 30vh;
   width: 325px;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: 5em; */
 `
 
 export const MySelect = styled(Select)`
@@ -223,6 +231,3 @@ export const Explain = styled.h3`
 
 `
 
-export const MySteps= styled(Steps)`
-  width: 80%;
-`
