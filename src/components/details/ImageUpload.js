@@ -10,8 +10,10 @@ import { useRouter } from 'next/router';
 import FormData from 'form-data';
 import { useDispatch, useSelector } from 'react-redux'; // 리덕스 관련
 import {setIsTrans, setIsPetname} from '../../commons/store/store.js'
+import { useAxios } from '../../../src/commons/axios';
 
 export default function ImageUpload(props) {
+    const api = useAxios()
     const [fileList, setFileList] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [modalVisible2, setModalVisible2] = useState(false);
@@ -53,10 +55,9 @@ export default function ImageUpload(props) {
 
         try {
             setModalVisible2(true);
-            const response = await axios.post('http://localhost:8000/pet/result', formData, {
+            const response = await api.post('http://localhost:8000/pet/result', formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
-                    Authorization: `Bearer ${token}`
                 },
                 withCredentials: true,
             });

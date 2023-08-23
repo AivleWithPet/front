@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsLoginTrue, setIsLoginFalse } from '../../commons/store/store.js';
+import { setIsLoginTrue, setIsLoginFalse, setIsToken } from '../../commons/store/store.js';
 
 
 export default function LoginPage() {
@@ -44,6 +44,7 @@ export default function LoginPage() {
                     localStorage.setItem('name',userName);
                     localStorage.setItem('memberId', memberId)
                     alert("로그인 성공");
+                    dispatch(setIsToken(accessToken));
                     dispatch(setIsLoginTrue());
                     router.push("/");
                 } else {

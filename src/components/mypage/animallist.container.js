@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import RegisterInduction from "./induction.container";
 import { Card } from "antd";
+import { useSelector } from "react-redux";
 const { Meta } = Card;
 
 const END_URL = "http://localhost:8080/pet";
@@ -64,6 +65,7 @@ const AnimalsList = ({ data }) => {
 export default function AnimalListView({ petList, selectedItem }) {
   const [petData, setPetData] = useState([]);
   console.log("dkdkdk", petData);
+  // const accessToken = useSelector((state) => state.isToken.accessToken);
 
   useEffect(() => {
     if (selectedItem != "register") {
@@ -71,6 +73,9 @@ export default function AnimalListView({ petList, selectedItem }) {
       fetchPetData(selectedItem);
     }
   }, [selectedItem]);
+  if (typeof window !== 'undefined') {
+    console.log(localStorage.getItem("accessToken"))
+  }
 
   // 통신 수행하는 부분
   const fetchPetData = async (petId) => {
