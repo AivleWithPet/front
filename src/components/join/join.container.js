@@ -195,7 +195,7 @@ export default function JoinContainer() {
           <div className="bluebox" style={{ transform: isSignUpMode ? 'translateX(80%)' : 'translateX(0%)' }}>
             {isSignUpMode ? (
               <div className="signup">
-                <h1>register</h1>
+                <h1 className='register-h1'>register</h1>
                 <form autoComplete="off" onSubmit={reHandleSubmit}>
                   <input 
                     type="email" 
@@ -256,16 +256,16 @@ export default function JoinContainer() {
             )}
           </div>
           <div className="leftbox">
-            <h2 className="title"><span>BoW</span><br />WoW</h2>
+            <h2 className="title"><span>Co</span>Pet</h2>
             <p className="desc">AI 기반 반려동물 헬스케어 <span>솔루션</span></p>
-            <img className="pet smaller" src="/1.jpg" alt="1357d638624297b" border="0" />
+            <img className="pet smaller" src="img/join_cat3.jpg" alt="1357d638624297b" border="0" />
             <p className="account">have an account?</p>
             <button className="button" onClick={handleSignInClick}>login</button>
           </div>
           <div className="rightbox">
-            <h2 className="title"><span>BoW</span><br />WoW</h2>
+            <h2 className="title"><span>Co</span>Pet</h2>
             <p className="desc">AI 기반 반려동물 헬스케어 <span>솔루션</span></p>
-            <img className="pet" src="/4.jpg" alt="bouquet" />
+            <img className="pet" src="img/join_cat2.jpg" alt="bouquet" />
             <p className="account">don't have an account?</p>
             <button className="button" onClick={handleSignUpClick}>sign up</button>
           </div>
