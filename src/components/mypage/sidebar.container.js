@@ -18,6 +18,9 @@ const Profile = ({ number, petList }) => {
         width: "300px",
         height: "15vh",
         backgroundColor: "#4A85DC",
+        position: 'fixed',
+        bottom: 0,
+        left: 0
       }}
     >
       <div>
