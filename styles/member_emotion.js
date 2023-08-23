@@ -6,7 +6,8 @@ export const CardContainer = styled.div`
   color: #2b2c48;
   font-family: sans-serif;
 //   background-image: url(https://images.unsplash.com/photo-1566738780863-f9608f88f3a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2378&q=80);
-  background-image: url("/examine/examinebg.png");
+  // background-image: url("/examine/examinebg.png");
+  background-image: url("/img/about_back.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

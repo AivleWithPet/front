@@ -65,7 +65,7 @@ export const All = styled.div`
   h1 {
     // font-family: $sans-serif;
     text-align: center;
-    margin-top: 95px;
+    margin-top: 75px;
     text-transform: uppercase;
     color: ${white};
     font-size: 2em;
@@ -103,18 +103,18 @@ export const All = styled.div`
   
   .pet {
     position: absolute;
-    width: 120px;
+    width: 180px;
     height: 120px;
-    top: 46%;
-    left: 29%;
+    top: 41%;
+    left: 22%;
     opacity: .7;
   }
   
   .smaller {
-    width: 90px;
-    height: 100px;
-    top: 48%;
-    left: 38%;
+    width: 180;
+    height: 115px;
+    top: 42%;
+    left: 22%;
     opacity: .9;
   }
   
