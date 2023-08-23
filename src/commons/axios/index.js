@@ -2,18 +2,21 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
+const API_URL = 'http://localhost:8080'
+const JANGO_URL = 'http://localhost:8000'
+
 export const useAxios = () => {
-  const BASE_URL = 'http://localhost:8080/auth/refresh-token'
   const [tokens, setTokens] = useState({ accessToken: null, refreshToken: null });
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    const refreshToken = localStorage.getItem('refreshToken');
+    const accessToken = localStorage?.getItem('accessToken');
+    const refreshToken = localStorage?.getItem('refreshToken');
     setTokens({ accessToken, refreshToken });
   }, [])
 
   const axiosInstance = axios.create({
-    headers: { Authorization: `Bearer ${tokens.accessToken}` },
+    baseURL: API_URL,
+    headers: { Authorization: `Bearer ${tokens?.accessToken}` },
   });
   axiosInstance.interceptors.response.use(
     (response) => {
@@ -28,7 +31,7 @@ export const useAxios = () => {
 
         try {
           // refreshToken으로 새로운 accessToken을 받아오는 API 요청을 구현해야 합니다.
-          const response = await axios.post(BASE_URL, {
+          const response = await axios.post(`${API_URL}/auth/refresh-token`, {
             refreshToken: tokens.refreshToken,
           });
 
@@ -54,3 +57,11 @@ export const useAxios = () => {
 
   return axiosInstance;
 };
+
+export const useAxiosJango = () => {
+  const axiosInstance = axios.create({
+    baseURL: JANGO_URL,
+  });
+
+  return axiosInstance
+}

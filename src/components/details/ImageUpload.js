@@ -10,10 +10,12 @@ import { useRouter } from 'next/router';
 import FormData from 'form-data';
 import { useDispatch, useSelector } from 'react-redux'; // 리덕스 관련
 import {setIsTrans, setIsPetname} from '../../commons/store/store.js'
-import { useAxios } from '../../../src/commons/axios';
+import { useAxios, useAxiosJango } from '../../../src/commons/axios';
 
 export default function ImageUpload(props) {
     const api = useAxios()
+    const jangoapi = useAxiosJango()
+
     const [fileList, setFileList] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [modalVisible2, setModalVisible2] = useState(false);
@@ -55,7 +57,7 @@ export default function ImageUpload(props) {
 
         try {
             setModalVisible2(true);
-            const response = await api.post('http://localhost:8000/pet/result', formData, {
+            const response = await jangoapi.post('/pet/result', formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -72,10 +74,6 @@ export default function ImageUpload(props) {
     // 모달 창 ok 누르면 꺼지는 함수
     const handleModalOk = () => {
         setModalVisible(false);
-    }
-
-    const handleModalOk2 = () => {
-        setModalVisible2(false);
     }
 
     // 이미지 삭제 함수

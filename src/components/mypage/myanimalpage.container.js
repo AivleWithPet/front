@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 import SideBar from "./sidebar.container";
 import RegisterFB from "./registerbutton.container";
 import AnimalListView from "./animallist.container";
 
 import { Layout } from "antd";
+import { useAxios } from "@/src/commons/axios";
 const { Content, Sider } = Layout;
 
-const END_URL = "http://localhost:8080/pet/myPets";
-
 export default function MyAnimalPage() {
+  const api = useAxios()
   const [petList, setPetList] = useState([]);
   const [selectedItem, setSelectedItem] = useState(1);
   // 여기가 초기값 설정 파트라 여기 null을 줬더니 처음도 null이 되는 문제가 발생 했었음
@@ -27,14 +26,13 @@ export default function MyAnimalPage() {
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
       withCredentials: true,
     };
 
     try {
-      const response = await axios.get(
-        `${END_URL}?memberId=${localStorage.getItem("memberId")}`,
+      const response = await api.get(
+        `/pet/myPets?memberId=${localStorage.getItem("memberId")}`,
         config
       );
 

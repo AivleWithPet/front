@@ -5,8 +5,10 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsLoginTrue, setIsLoginFalse } from '../../commons/store/store.js';
+import { useAxios } from '../../../src/commons/axios';
 
 export default function JoinContainer() {
+  const api = useAxios()
   const [isSignUpMode, setSignUpMode] = useState(false);
 
   const handleSignUpClick = () => {
@@ -36,7 +38,7 @@ export default function JoinContainer() {
 
       if(validInputs()){
           try {
-              const response = await axios.post('/auth/login', {
+              const response = await api.post('/auth/login', {
                   'email': email,
                   'password': password,
               }, { withCredentials: true });
@@ -113,7 +115,7 @@ export default function JoinContainer() {
 
       if(reValidInputs()){
           try {
-              const response = await axios.post('/auth/signup', {
+              const response = await api.post('/auth/signup', {
                   "email": reEmail,
                   "name": reUsername,
                   "password": rePassword,

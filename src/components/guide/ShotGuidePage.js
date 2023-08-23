@@ -10,7 +10,6 @@ import { useAxios } from "../../../src/commons/axios";
 const { Meta } = Card
 export default function ShotGuidePage() {
     const api = useAxios()
-    const END_URL = "http://localhost:8080/pet/myPets";
 
     const router = useRouter();
 
@@ -27,7 +26,7 @@ export default function ShotGuidePage() {
     useEffect(() => {
         const member_id = localStorage?.getItem("memberId")
         const petData = async () => {
-            const result = await api.get(END_URL,{ 
+            const result = await api.get('/pet/myPets',{ 
                 params: {memberId: member_id},
             });
             if (result.data.length === 0) {

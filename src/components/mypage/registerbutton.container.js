@@ -8,7 +8,6 @@ import { useAxios } from "@/src/commons/axios";
 
 export default function RegisterFB({ page }) {
   const api = useAxios()
-  const END_URL = "http://localhost:8080/pet/";
   const [img, setImg] = useState(null);
   const router = useRouter();
 
@@ -49,7 +48,7 @@ export default function RegisterFB({ page }) {
       formData.append("info", fieldsValue.info); // info인데 필수는 아님...
       formData.append("accessToken", localStorage.getItem("accessToken")); // 액세스 토큰 추가
       
-      const response = await api.post(END_URL, formData, {
+      const response = await api.post('/pet/', formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           withCredentials: true, //CORS
@@ -59,7 +58,7 @@ export default function RegisterFB({ page }) {
         console.log("데이터 전송 성공", response.data);
         message.success("등록이 완료되었습니다."); // 성공 메시지 보여주기
         setImg([]);
-        router.push("/mypage");
+        // router.push("/mypage");
         router.reload();
       } else {
         console.log("데이터 전송 실패", response.status);

@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import RegisterInduction from "./induction.container";
 import { Card } from "antd";
-import { useSelector } from "react-redux";
+import { useAxios } from "../../../src/commons/axios";
 const { Meta } = Card;
-
-const END_URL = "http://localhost:8080/pet";
 
 const AnimalsList = ({ data }) => {
   return (
@@ -63,9 +60,9 @@ const AnimalsList = ({ data }) => {
 };
 
 export default function AnimalListView({ petList, selectedItem }) {
+  const api = useAxios()
   const [petData, setPetData] = useState([]);
   console.log("dkdkdk", petData);
-  // const accessToken = useSelector((state) => state.isToken.accessToken);
 
   useEffect(() => {
     if (selectedItem != "register") {
@@ -83,13 +80,12 @@ export default function AnimalListView({ petList, selectedItem }) {
       const config = {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
         withCredentials: true,
       };
 
-      const response = await axios.get(
-        `${END_URL}/results?petId=${petId}`,
+      const response = await api.get(
+        `/pet/results?petId=${petId}`,
         config
       );
 
