@@ -6,8 +6,18 @@ import AnimalListView from "./animallist.container";
 
 import { Layout } from "antd";
 import { useAxios } from "@/src/commons/axios";
+import styled from "@emotion/styled"
+
 const { Content, Sider } = Layout;
 
+const MySider = styled(Sider)`
+  background-color: #68A5FE;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  overflow : auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`
 export default function MyAnimalPage() {
   const api = useAxios()
   const [petList, setPetList] = useState([]);
@@ -53,19 +63,14 @@ export default function MyAnimalPage() {
 
   return (
     <Layout style={{ height: "calc(100vh - 80px)", display: "flex" }}>
-      <Sider
-        width={300}
-        style={{
-          backgroundColor: "#68A5FE",
-          boxShadow: "2px 2px 2px rgba(0, 0, 0, 0.1)",
-        }}
-      >
+      <MySider
+        width={300}>
         <SideBar
           petList={petList}
           selectedItem={selectedItem}
           onItemClick={handleSideBarItemClick}
         />
-      </Sider>
+      </MySider>
 
       <Layout style={{ padding: "0 24px 24px", backgroundColor: "#EEF3FF", overflow:'auto' }}>
         <Content>
