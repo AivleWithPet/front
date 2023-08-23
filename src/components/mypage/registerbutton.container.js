@@ -2,11 +2,12 @@ import React, { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import FormData from "form-data";
 import axios from "axios";
-
 import { Popover, Button, Form, Input, DatePicker, message } from "antd";
 import { HeartTwoTone } from "@ant-design/icons";
+import { useAxios } from "@/src/commons/axios";
 
 export default function RegisterFB({ page }) {
+  const api = useAxios()
   const END_URL = "http://localhost:8080/pet/";
   const [img, setImg] = useState(null);
   const router = useRouter();
@@ -47,10 +48,9 @@ export default function RegisterFB({ page }) {
       formData.append("photo", img); // 이미지 파일 추가
       formData.append("info", fieldsValue.info); // info인데 필수는 아님...
       formData.append("accessToken", localStorage.getItem("accessToken")); // 액세스 토큰 추가
-
-      const response = await axios.post(END_URL, formData, {
+      
+      const response = await api.post(END_URL, formData, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           "Content-Type": "multipart/form-data",
           withCredentials: true, //CORS
         },
@@ -66,9 +66,9 @@ export default function RegisterFB({ page }) {
       }
     } catch (error) {
       setImg([]);
-      router.push("/mypage");
-      router.reload();
       console.error("업로드 중 오류가 발생했습니다.", error);
+      // router.push("/mypage");
+      // router.reload();
     }
   };
 

@@ -6,9 +6,11 @@ import { useRouter } from "next/router";
 import ImageUpload from "../details/ImageUpload";
 import { Card } from "antd";
 import axios from "axios";
+import { useAxios } from "../../../src/commons/axios";
 
 const { Meta } = Card
 export default function ShotGuidePage() {
+    const api = useAxios()
     const END_URL = "http://localhost:8080/pet/myPets";
 
     const router = useRouter();
@@ -18,21 +20,16 @@ export default function ShotGuidePage() {
     const [choosepet, setChoosepet] = useState()
     const [petname, setPetname] = useState()
     const [petspecies, setSpecies] = useState()
-    const [petbirthYear, setBirthYear] = useState()
-    const [petinfo, setInfo] = useState()
     const [petprofile, setProfile] = useState()
 
     const description1 = '반려동물을 선택해주세요.';
     const description2 = '사진업로드시 주의사항';
     const description3 = '사진 제출하기';
     useEffect(() => {
-        const token = localStorage?.getItem("accessToken")
         const member_id = localStorage?.getItem("memberId")
-        console.log(token)
         const petData = async () => {
-            const result = await axios.get(END_URL,{ 
+            const result = await api.get(END_URL,{ 
                 params: {memberId: member_id},
-                headers: { Authorization: `Bearer ${token}`}
             });
             if (result.data.length === 0) {
                 alert("등록된 반려동물이 없습니다.")
@@ -42,7 +39,6 @@ export default function ShotGuidePage() {
             setMypet(result.data)
         }
         petData()
-        // console.log(mypet)
     }, [])
 
     const options = mypet?.map(el => ({
@@ -50,14 +46,11 @@ export default function ShotGuidePage() {
         label: el.petName,
     }));
 
-    // e에 나중에 받아온 pet_id 들어가야 합니다
     const handleChange = (e) => {
         setChoosepet(e)
         const petinfo = mypet.find((el) => el.petId === e)
         setPetname(petinfo.petName)
         setSpecies(petinfo.species)
-        setBirthYear(petinfo.birthYear)
-        setInfo(petinfo.info)
         setProfile(petinfo.photoData)
     };
 

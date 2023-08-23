@@ -57,6 +57,6 @@ export default configureStore({
     reducer: {
         isLogin : isLogin.reducer,
         isTrans : isTrans.reducer,
-        isPetname : isPetname.reducer
+        isPetname : isPetname.reducer,
     }
 })

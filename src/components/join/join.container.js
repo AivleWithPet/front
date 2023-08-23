@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { All } from './join.style';
-
-import { Global } from "@emotion/react";
-import {ERROR, MainFontStyles} from '../../../styles/register.style'
+import {ERROR} from '../../../styles/register.style'
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';

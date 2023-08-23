@@ -53,6 +53,7 @@ export default function Temp() {
                   localStorage.setItem('name',userName);
                   localStorage.setItem('memberId', memberId)
                   alert("로그인 성공");
+                  dispatch(setIsToken({accessToken: accessToken, refreshToken: refreshToken}));
                   dispatch(setIsLoginTrue());
                   router.push("/");
               } else {
