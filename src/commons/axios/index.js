@@ -1,15 +1,10 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setIsToken } from '../store/store'; // 적절한 경로로 변경
 import { useEffect } from 'react';
 
 export const useAxios = () => {
   const BASE_URL = 'http://localhost:8080/auth/refresh-token'
   const [tokens, setTokens] = useState({ accessToken: null, refreshToken: null });
-  // const accessToken = useSelector((state) => state.isToken.accessToken);
-  // const refreshToken = useSelector((state) => state.isToken.refreshToken);
-  // const dispatch = useDispatch();
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
@@ -43,9 +38,6 @@ export const useAxios = () => {
           
           localStorage.setItem('accessToken', newAccessToken);
           localStorage.setItem('refreshToken', newRefreshToken)
-
-          // 리덕스 스토어에 새 토큰 업데이트
-          // dispatch(setIsToken({ accessToken: newAccessToken, refreshToken: newRefreshToken }));
 
           // 실패한 요청의 헤더를 새 토큰으로 업데이트하고, 요청을 다시 실행합니다.
           originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;

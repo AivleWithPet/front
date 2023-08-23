@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button';
 import { useRouter } from "next/router";
 import ImageUpload from "../details/ImageUpload";
 import { Card } from "antd";
-import axios from "axios";
 import { useAxios } from "../../../src/commons/axios";
 
 const { Meta } = Card
