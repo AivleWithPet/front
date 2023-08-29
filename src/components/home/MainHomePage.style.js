@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const All = styled.div`
   background-color: #95A9D9;  
   margin: 0px;
-  height: calc(100vh - 84px);
+  height: calc(100vh - 93.8px);
   
   display: grid;
   place-items: center;

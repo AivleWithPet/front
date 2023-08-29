@@ -19,7 +19,7 @@ export const All = styled.div`
   .joinContainer {
     margin: auto;
     width: 650px;
-    height: calc(100vh - 84px);
+    height: calc(100vh - 93.8px);
     position: relative;
   }
   .welcome {

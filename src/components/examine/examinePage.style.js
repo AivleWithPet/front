@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 import { Select, Space } from "antd"
 
 export const background = styled.div`
-  height: calc(100vh - 84.44px);
+  height: calc(100vh - 93.8px);
   display: flex;
   justify-content: center;
   align-items: center;
