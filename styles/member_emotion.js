@@ -14,12 +14,21 @@ export const CardContainer = styled.div`
   background-attachment: fixed;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   padding: 20px;
 `
 
+export const CardRow = styled.div`
+  display:flex;
+  flex-direction:row;
+  margin: 2%;
+`
+
 export const CardAll = styled.div`
-  max-width: 340px;
+  width: 300px;
+  height: 620px;
+  text-align: center;
   margin: auto;
   overflow-y: hidden;
   position: relative;
@@ -31,7 +40,7 @@ export const CardAll = styled.div`
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.2);
-  height: 450px;
+  
 `
 
 export const CardHeader = styled.div`
@@ -111,7 +120,7 @@ export const CardMain = styled.div`
 
   .card-subtitle {
     font-weight: 700;
-    font-size: 13px;
+    font-size: 18px;
     margin-bottom: 8px;
   }
 
@@ -132,7 +141,7 @@ export const CardMain = styled.div`
     display: flex;
     align-items: center;
     padding: 0 20px;
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
     svg {
       fill: rgb(165, 181, 206);
       width: 16px;
