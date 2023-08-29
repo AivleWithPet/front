@@ -77,78 +77,78 @@ export const All = styled.div`
     pointer-events: none;
   }
 
-  .big-card:nth-child(2) {
+  .big-card:nth-of-type(2) {
     background-image: url('/img/main-2.jpg');
     transform: translateX(-10%) rotate(-1deg);
   }
 
-  .big-card:nth-child(4) {
+  .big-card:nth-of-type(4) {
     background-image: url('/img/main-1.jpg');
     transform: rotate(2deg);
   }
 
-  .big-card:nth-child(6) {
+  .big-card:nth-of-type(6) {
     
     background-image: url('/img/main-4.jpg');
     transform: translateX(-6%) rotate(-3deg);
   }
 
-  .big-card:nth-child(8) {
+  .big-card:nth-of-type(8) {
     background-image: url('/img/main-3.jpg');
     transform: translate(10%, 3%) rotate(5deg);
   }
 
 
 
-  .little-card:nth-child(1) {
+  .little-card:nth-of-type(1) {
     background-image: url('/img/main-8.jpg');
   }
 
-  .little-card:nth-child(3) {
-    background-image: url('/img/tt-1.jpg');
+  .little-card:nth-of-type(3) {
+    background-image: url('/img/main-9.jpg');
   }
 
-  .little-card:nth-child(5) {
+  .little-card:nth-of-type(5) {
     background-image: url('/img/main-7.jpg');
   }
 
-  .little-card:nth-child(7) {
-    background-image: url('/img/tt-3.jpg');
+  .little-card:nth-of-type(7) {
+    background-image: url('/img/main-11.jpg');
   }
 
   .card-group:hover > .card {  
     box-shadow: -2vmin 2vmin 3vmin rgba(0, 0, 0, 0.4);
   }
 
-  .card-group:hover > .big-card:nth-child(2) {
+  .card-group:hover > .big-card:nth-of-type(2) {
     transform: translate(-75%, 16%) rotate(-24deg);
   }
 
-  .card-group:hover > .big-card:nth-child(4) {
+  .card-group:hover > .big-card:nth-of-type(4) {
     transform: translate(-25%, 8%) rotate(-8deg);
   }
 
-  .card-group:hover > .big-card:nth-child(6) {
+  .card-group:hover > .big-card:nth-of-type(6) {
     transform: translate(25%, 8%) rotate(8deg);
   }
 
-  .card-group:hover > .big-card:nth-child(8) {
+  .card-group:hover > .big-card:nth-of-type(8) {
     transform: translate(75%, 16%) rotate(24deg);
   }
 
-  .card-group:hover > .little-card:nth-child(1) {
+  .card-group:hover > .little-card:nth-of-type(1) {
     transform: translate(200%, -160%) rotate(-15deg);
   }
 
-  .card-group:hover > .little-card:nth-child(3) {
+  .card-group:hover > .little-card:nth-of-type(3) {
     transform: translate(160%, 170%) rotate(15deg);
   }
 
-  .card-group:hover > .little-card:nth-child(5) {
+  .card-group:hover > .little-card:nth-of-type(5) {
     transform: translate(-200%, -170%) rotate(15deg);
   }
 
-  .card-group:hover > .little-card:nth-child(7) {
+  .card-group:hover > .little-card:nth-of-type(7) {
     transform: translate(-280%, 140%) rotate(-15deg);
   }
 
